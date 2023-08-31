@@ -14,10 +14,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.valorantandroid.ui.theme.ValorantAndroidTheme
 import com.example.valorantandroid.ui.viewmodel.AgentsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ValorantActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,7 @@ class ValorantActivity : ComponentActivity() {
 
 @Composable
 fun AgentsPayload(
-    viewModel: AgentsViewModel = viewModel()
+    viewModel: AgentsViewModel = hiltViewModel()
 ) {
     Column(
         modifier = Modifier

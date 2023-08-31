@@ -3,19 +3,15 @@ package com.example.valorantandroid.ui.viewmodel
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.valorantandroid.data.AgentsNetworkDataSource
 import com.example.valorantandroid.data.AgentsRepository
-import com.example.valorantandroid.data.Retrofit
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AgentsViewModel: ViewModel() {
-
-    private val api = Retrofit.valorantApi
-    private val source = AgentsNetworkDataSource(api, Dispatchers.IO)
-    private val repo = AgentsRepository(source)
-
-
+@HiltViewModel
+class AgentsViewModel @Inject constructor(
+    private val repository: AgentsRepository
+): ViewModel() {
     var agents = mutableStateOf("")
         private set
 
@@ -25,10 +21,7 @@ class AgentsViewModel: ViewModel() {
 
     fun getAgents() {
         viewModelScope.launch {
-            agents.value = repo.getAgents().data.toString()
+            agents.value = repository.getAgents().data.toString()
         }
     }
-
-
-
 }
