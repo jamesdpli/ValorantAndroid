@@ -1,7 +1,9 @@
 package com.example.valorantandroid.data
 
-class AgentsRepository(
-    private val agentsNetworkDataSource: AgentsNetworkDataSource
+import javax.inject.Inject
+
+class AgentsRepository @Inject constructor(
+    private val valorantApi: ValorantApi
 ) {
-    suspend fun getAgents(): AgentsNetworkModel = agentsNetworkDataSource.getAgents()
+    suspend fun getAgents(): AgentsNetworkModel = valorantApi.getAgents()
 }
