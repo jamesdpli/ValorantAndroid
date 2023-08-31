@@ -8,3 +8,4 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/3 | AddUiState | Add UiState sealed interface to AgentsViewModel and utilise it |
 | https://github.com/jamesdpli/ValorantAndroid/pull/4 | ConvertToStateFlow | Converts ComposeSate to StateFlow |
 | https://github.com/jamesdpli/ValorantAndroid/pull/5 | DisplayAgentNames | Display agent names in LazyColumn |
+| https://github.com/jamesdpli/ValorantAndroid/pull/6 | IntroduceComposeNavigation | Basic PR for compose navigation integration |
