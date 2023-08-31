@@ -1,7 +1,8 @@
-package com.example.valorantandroid.ui.viewmodel
+package com.example.valorantandroid.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.valorantandroid.data.Agent
 import com.example.valorantandroid.data.AgentsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 sealed interface AgentsUiState {
-    data class Success(val agents: String) : AgentsUiState
+    data class Success(val agents: List<Agent>) : AgentsUiState
     object IsLoading : AgentsUiState
     data class IsError(val message: String) : AgentsUiState
 }
@@ -28,9 +29,10 @@ class AgentsViewModel @Inject constructor(
         getAgents()
     }
 
-    fun getAgents() = viewModelScope.launch {
+    private fun getAgents() = viewModelScope.launch {
         try {
-            _agentsScreenUiState.value = AgentsUiState.Success(repository.getAgents().agents.toString())
+            _agentsScreenUiState.value =
+                AgentsUiState.Success(repository.getAgents().agents)
         } catch(e: NullPointerException)  {
             _agentsScreenUiState.value = AgentsUiState.IsError(e.message.toString())
         }
