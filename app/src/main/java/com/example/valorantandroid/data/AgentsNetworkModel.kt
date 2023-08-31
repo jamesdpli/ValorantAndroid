@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class AgentsNetworkModel(
     @SerializedName("data")
-    val agents: List<Agents>,
+    val agents: List<Agent>,
     val status: Int
 )
 
-data class Agents(
+data class Agent(
     val abilities: List<Ability>,
     val assetPath: String,
     val background: String,
