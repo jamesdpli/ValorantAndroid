@@ -3,11 +3,12 @@ package com.example.valorantandroid.data
 import com.google.gson.annotations.SerializedName
 
 data class AgentsNetworkModel(
-    val data: List<Data>,
+    @SerializedName("data")
+    val agents: List<Agents>,
     val status: Int
 )
 
-data class Data(
+data class Agents(
     val abilities: List<Ability>,
     val assetPath: String,
     val background: String,
