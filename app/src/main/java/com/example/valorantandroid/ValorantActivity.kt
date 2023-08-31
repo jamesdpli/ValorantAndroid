@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -13,9 +12,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.valorantandroid.ui.theme.ValorantAndroidTheme
 import com.example.valorantandroid.ui.viewmodel.AgentsUiState
@@ -44,7 +44,7 @@ class ValorantActivity : ComponentActivity() {
 fun AgentsScreen(
     viewModel: AgentsViewModel = hiltViewModel()
 ) {
-    val agentsUiState = viewModel.agentsScreenUiState
+    val agentsUiState by viewModel.agentsScreenUiState.collectAsState()
 
     AgentsPayload(agentsUiState = agentsUiState, modifier = Modifier)
 }
@@ -71,7 +71,7 @@ fun AgentsPayload(
             is AgentsUiState.Success -> Text(
                 text = agentsUiState.agents,
             )
-            is AgentsUiState.IsError -> Text(text = "rr")
+            is AgentsUiState.IsError -> Text(text = agentsUiState.message)
         }
     }
 }
