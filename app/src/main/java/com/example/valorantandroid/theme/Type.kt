@@ -1,4 +1,4 @@
-package com.example.valorantandroid.ui.theme
+package com.example.valorantandroid.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

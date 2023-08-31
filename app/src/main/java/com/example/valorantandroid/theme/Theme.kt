@@ -1,4 +1,4 @@
-package com.example.valorantandroid.ui.theme
+package com.example.valorantandroid.theme
 
 import android.app.Activity
 import android.os.Build

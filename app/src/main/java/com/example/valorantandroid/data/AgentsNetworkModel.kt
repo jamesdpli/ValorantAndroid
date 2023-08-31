@@ -11,7 +11,7 @@ data class AgentsNetworkModel(
 data class Agent(
     val abilities: List<Ability>,
     val assetPath: String,
-    val background: String,
+    val background: String?,
     val backgroundGradientColors: List<String>,
     val bustPortrait: String,
     val characterTags: List<String>,
