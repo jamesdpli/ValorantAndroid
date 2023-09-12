@@ -7,8 +7,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.valorantandroid.ui.screens.AgentsScreen
-import com.example.valorantandroid.ui.screens.AgentsViewModel
+import com.example.valorantandroid.feature.agent.AgentDetailsScreen
+import com.example.valorantandroid.feature.agent.AgentDetailsViewModel
+import com.example.valorantandroid.feature.agent.AgentsScreen
+import com.example.valorantandroid.feature.agent.AgentsViewModel
 
 @Composable
 fun ValorantApp() {
@@ -18,10 +20,15 @@ fun ValorantApp() {
         startDestination = "agents"
     ) {
         composable("agents") {
-            val agentsUiState by hiltViewModel<AgentsViewModel>()
-                .agentsScreenUiState
-                .collectAsState()
-            AgentsScreen(agentsUiState)
+            val viewModel = hiltViewModel<AgentsViewModel>()
+            val agentsUiState by viewModel.agentsScreenUiState.collectAsState()
+            AgentsScreen(agentsUiState, {navController.navigate("agent/$it")})
+        }
+        composable("agent/{agentUuid}") {
+            val viewModel = hiltViewModel<AgentDetailsViewModel>()
+            val agentDetailsUiState by viewModel.agentDetailsUiState.collectAsState()
+
+            AgentDetailsScreen(agentDetailsUiState = agentDetailsUiState)
         }
     }
 }
