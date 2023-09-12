@@ -9,4 +9,4 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/4 | ConvertToStateFlow | Converts ComposeSate to StateFlow |
 | https://github.com/jamesdpli/ValorantAndroid/pull/5 | DisplayAgentNames | Display agent names in LazyColumn |
 | https://github.com/jamesdpli/ValorantAndroid/pull/6 | IntroduceComposeNavigation | Basic PR for compose navigation integration |
-| https://github.com/jamesdpli/ValorantAndroid/pull/7 | addOkHttpInterceptor | Adds OkHttpInterceptor |
+| https://github.com/jamesdpli/ValorantAndroid/pull/7 | AddOkHttpInterceptor | Adds OkHttpInterceptor |
