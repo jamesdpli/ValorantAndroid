@@ -1,4 +1,4 @@
-package com.example.valorantandroid.ui.screens
+package com.example.valorantandroid.feature.agent
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,8 +31,7 @@ class AgentsViewModel @Inject constructor(
 
     private fun getAgents() = viewModelScope.launch {
         try {
-            _agentsScreenUiState.value =
-                AgentsUiState.Success(repository.getAgents().agents)
+            _agentsScreenUiState.value = AgentsUiState.Success(repository.getAgents().agents)
         } catch(e: NullPointerException)  {
             _agentsScreenUiState.value = AgentsUiState.IsError(e.message.toString())
         }
