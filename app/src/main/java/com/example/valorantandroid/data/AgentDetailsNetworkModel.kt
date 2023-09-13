@@ -1,10 +1,13 @@
 package com.example.valorantandroid.data
 
+import com.google.gson.annotations.SerializedName
+
 data class AgentDetailsNetworkModel(
-    val `data`: Data,
+    @SerializedName("data")
+    val agent: Agent,
     val status: Int
 ) {
-    data class Data(
+    data class Agent(
         val abilities: List<Ability>,
         val assetPath: String,
         val background: String,
@@ -22,7 +25,8 @@ data class AgentDetailsNetworkModel(
         val isBaseContent: Boolean,
         val isFullPortraitRightFacing: Boolean,
         val isPlayableCharacter: Boolean,
-        val killfeedPortrait: String,
+        @SerializedName("killfeedPortrait")
+        val killFeedPortrait: String,
         val recruitmentData: Any,
         val role: Role,
         val uuid: String,
@@ -34,7 +38,6 @@ data class AgentDetailsNetworkModel(
             val displayName: String,
             val slot: String
         )
-
         data class Role(
             val assetPath: String,
             val description: String,
@@ -42,7 +45,6 @@ data class AgentDetailsNetworkModel(
             val displayName: String,
             val uuid: String
         )
-
         data class VoiceLine(
             val maxDuration: Double,
             val mediaList: List<Media>,
@@ -51,7 +53,8 @@ data class AgentDetailsNetworkModel(
             data class Media(
                 val id: Int,
                 val wave: String,
-                val wwise: String
+                @SerializedName("wwise")
+                val wise: String
             )
         }
     }

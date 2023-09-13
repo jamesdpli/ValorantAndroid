@@ -8,5 +8,5 @@ interface ValorantApi {
     suspend fun getAgents(): AgentsNetworkModel
 
     @GET("agents/{uuid}")
-    suspend fun getAgentDetails(@Path("uuid") uuid: String): AgentDetailsNetworkModel
+    suspend fun getAgentByUuid(@Path("uuid") uuid: String): AgentDetailsNetworkModel
 }

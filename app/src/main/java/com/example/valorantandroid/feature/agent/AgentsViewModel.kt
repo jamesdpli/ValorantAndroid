@@ -2,7 +2,7 @@ package com.example.valorantandroid.feature.agent
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.valorantandroid.data.Agent
+import com.example.valorantandroid.data.AgentsNetworkModel.Agent
 import com.example.valorantandroid.data.AgentsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
