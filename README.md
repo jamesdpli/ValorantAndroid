@@ -13,3 +13,4 @@ Important Pull Requests
 | ~~https://github.com/jamesdpli/ValorantAndroid/pull/8~~ | ~~AddOkHttpInterceptor~~ | ~~Empty PR. Not sure what happened here~~ |
 | https://github.com/jamesdpli/ValorantAndroid/pull/9 | MvvmAgentDetailsScreen | Adds agent details screen with partial mvvvm |
 | https://github.com/jamesdpli/ValorantAndroid/pull/10 | UpdateNetworking | New screen uses repository pattern, dto's use nested data classes |
+| https://github.com/jamesdpli/ValorantAndroid/pull/11 | AddCoil | Adds coil and async image example |
