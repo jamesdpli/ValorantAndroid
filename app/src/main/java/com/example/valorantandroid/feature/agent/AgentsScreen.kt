@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.valorantandroid.data.AgentsNetworkModel.Agent
 
 @Composable
@@ -52,6 +53,7 @@ fun AgentItem(
             .fillMaxWidth()
             .padding(5.dp)
     ) {
+        AsyncImage(model = agent.fullPortrait, contentDescription = agent.developerName + "portrait")
         Text(text = agent.displayName)
     }
 }
