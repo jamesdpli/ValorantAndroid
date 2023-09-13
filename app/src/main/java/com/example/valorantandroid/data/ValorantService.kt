@@ -3,7 +3,7 @@ package com.example.valorantandroid.data
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface ValorantApi {
+interface ValorantService {
     @GET("agents")
     suspend fun getAgents(): AgentsNetworkModel
 
