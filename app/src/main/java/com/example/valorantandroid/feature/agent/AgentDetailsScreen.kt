@@ -1,26 +1,50 @@
 package com.example.valorantandroid.feature.agent
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import coil.compose.AsyncImage
+import com.example.valorantandroid.R
+import com.example.valorantandroid.data.AgentDetailsNetworkModel.Agent
 
 @Composable
 fun AgentDetailsScreen(
     agentDetailsUiState: AgentDetailsUiState,
     modifier: Modifier = Modifier
 ) {
-    when(agentDetailsUiState) {
-        is AgentDetailsUiState.Success -> {
-            Column {
-                Text(text = agentDetailsUiState.agent.displayName)
-                Text(text = agentDetailsUiState.agent.background)
-                Text(text = agentDetailsUiState.agent.description)
-                Text(text = agentDetailsUiState.agent.developerName)
-            }
-        }
+    when (agentDetailsUiState) {
+        is AgentDetailsUiState.Success -> AgentDetails(agent = agentDetailsUiState.agent)
         is AgentDetailsUiState.Loading -> Text(text = "Loading")
         is AgentDetailsUiState.Error -> Text(text = "Error")
     }
+}
 
+@Composable
+fun AgentDetails(
+    agent: Agent,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
+    ) {
+        Text(
+            text = agent.displayName,
+        )
+        AsyncImage(
+            model = agent.fullPortrait,
+            placeholder = painterResource(id = R.drawable.baseline_broken_image_24),
+            contentDescription = agent.displayName + "portrait"
+        )
+        Text(
+            text = agent.description,
+            textAlign = TextAlign.Center
+        )
+    }
 }
