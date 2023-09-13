@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.valorantandroid.data.AgentDetailsNetworkModel.Agent
 import com.example.valorantandroid.data.AgentsRepository
-import com.example.valorantandroid.data.ValorantApi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,13 +24,13 @@ class AgentDetailsViewModel @Inject constructor(
     private val repository: AgentsRepository
 ) : ViewModel() {
 
-    private val uuid: String = checkNotNull(savedStateHandle["agentUuid"])
+    private val uuidNavArg: String = checkNotNull(savedStateHandle["agentUuid"])
 
     private var _agentDetailsUiState = MutableStateFlow<AgentDetailsUiState>(AgentDetailsUiState.Loading)
     val agentDetailsUiState = _agentDetailsUiState.asStateFlow()
 
     init {
-        getAgentDetails(uuid)
+        getAgentDetails(uuidNavArg)
     }
 
     fun getAgentDetails(uuid: String) = viewModelScope.launch {
