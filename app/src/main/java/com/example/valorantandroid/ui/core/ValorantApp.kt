@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.valorantandroid.feature.agent.AgentDetailsScreen
 import com.example.valorantandroid.feature.agent.AgentDetailsViewModel
 import com.example.valorantandroid.feature.agent.AgentsScreen
@@ -19,12 +21,17 @@ fun ValorantApp() {
         navController = navController,
         startDestination = "agents"
     ) {
-        composable("agents") {
+        composable(
+            route = "agents"
+        ) {
             val viewModel = hiltViewModel<AgentsViewModel>()
             val agentsUiState by viewModel.agentsScreenUiState.collectAsState()
             AgentsScreen(agentsUiState, {navController.navigate("agent/$it")})
         }
-        composable("agent/{agentUuid}") {
+        composable(
+            route = "agent/{agentUuid}",
+            arguments = listOf(navArgument("agentUuid") { type = NavType.StringType })
+        ) {
             val viewModel = hiltViewModel<AgentDetailsViewModel>()
             val agentDetailsUiState by viewModel.agentDetailsUiState.collectAsState()
 
