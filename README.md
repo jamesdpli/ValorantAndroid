@@ -15,3 +15,4 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/10 | UpdateNetworking | New screen uses repository pattern, dto's use nested data classes |
 | https://github.com/jamesdpli/ValorantAndroid/pull/11 | AddCoil | Adds coil and async image example |
 | https://github.com/jamesdpli/ValorantAndroid/pull/12 | AgentListToDetailsUiRework | Rework of Agent list to agent details functionality |
+| https://github.com/jamesdpli/ValorantAndroid/pull/13 | SetUpNavGraph | Set up nested navigation |
