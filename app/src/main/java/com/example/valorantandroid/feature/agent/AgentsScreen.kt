@@ -21,7 +21,7 @@ import com.example.valorantandroid.data.AgentsNetworkModel.Agent
 @Composable
 fun AgentsScreen(
     agentsUiState: AgentsUiState,
-    onAgentClicked: (uuid: String) -> Unit = {},
+    onAgentClicked: (uuid: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (agentsUiState) {
@@ -34,7 +34,7 @@ fun AgentsScreen(
 @Composable
 fun AgentsList(
     agents: List<Agent>,
-    onAgentClicked: (uuid: String) -> Unit = {},
+    onAgentClicked: (uuid: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 200.dp)) {
