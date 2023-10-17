@@ -2,6 +2,7 @@ package com.example.valorantandroid.feature.agent
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,7 +20,7 @@ fun AgentDetailsScreen(
 ) {
     when (agentDetailsUiState) {
         is AgentDetailsUiState.Success -> AgentDetails(agent = agentDetailsUiState.agent)
-        is AgentDetailsUiState.Loading -> Text(text = "Loading")
+        is AgentDetailsUiState.Loading -> Text(text = "Loading", modifier = modifier.fillMaxSize())
         is AgentDetailsUiState.Error -> Text(text = "Error")
     }
 }
@@ -32,7 +33,7 @@ fun AgentDetails(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = modifier
+        modifier = modifier.fillMaxSize()
     ) {
         Text(
             text = agent.displayName,
