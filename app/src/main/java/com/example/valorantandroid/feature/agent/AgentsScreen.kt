@@ -1,6 +1,7 @@
 package com.example.valorantandroid.feature.agent
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -21,28 +22,44 @@ import com.example.valorantandroid.data.AgentsNetworkModel.Agent
 @Composable
 fun AgentsScreen(
     agentsUiState: AgentsUiState,
-    onAgentClicked: (uuid: String) -> Unit,
+    onAgentClicked: (uuid: String, name: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (agentsUiState) {
-        is AgentsUiState.IsLoading -> Text(text = "Loading")
-        is AgentsUiState.Success -> AgentsList(agents = agentsUiState.agents, onAgentClicked)
-        is AgentsUiState.IsError -> Text(text = agentsUiState.message)
+        is AgentsUiState.IsLoading -> Text(
+            text = "Loading",
+            modifier = modifier
+                .fillMaxSize()
+        )
+        is AgentsUiState.Success -> AgentsList(
+            agents = agentsUiState.agents,
+            onAgentClicked = onAgentClicked,
+            modifier = modifier
+                .fillMaxSize()
+        )
+        is AgentsUiState.IsError -> Text(
+            text = agentsUiState.message,
+            modifier
+                .fillMaxSize()
+        )
     }
 }
 
 @Composable
 fun AgentsList(
     agents: List<Agent>,
-    onAgentClicked: (uuid: String) -> Unit,
+    onAgentClicked: (uuid: String, name: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 200.dp)) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(count = 2),
+        modifier = modifier
+    ) {
         items(agents) {
             AgentItem(
                 agent = it,
                 modifier = Modifier
-                    .clickable { onAgentClicked(it.uuid) }
+                    .clickable { onAgentClicked(it.uuid, it.displayName) }
             )
         }
     }
