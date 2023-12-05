@@ -1,6 +1,6 @@
-package com.example.valorantandroid.di
+package com.example.valorantandroid.core.di
 
-import com.example.valorantandroid.data.ValorantService
+import com.example.valorantandroid.feature.agent.data.service.ValorantService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.example.valorantandroid.feature.agent
+package com.example.valorantandroid.feature.agent.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import coil.compose.AsyncImage
 import com.example.valorantandroid.R
-import com.example.valorantandroid.data.AgentDetailsNetworkModel.Agent
+import com.example.valorantandroid.feature.agent.data.model.AgentDetailsNetworkModel.Agent
+import com.example.valorantandroid.feature.agent.ui.viewmodel.AgentDetailsUiState
 
 @Composable
 fun AgentDetailsScreen(
@@ -24,6 +25,7 @@ fun AgentDetailsScreen(
         is AgentDetailsUiState.Error -> Text(text = "Error")
     }
 }
+
 
 @Composable
 fun AgentDetails(

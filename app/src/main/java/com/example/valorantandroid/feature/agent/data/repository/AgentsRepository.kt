@@ -1,5 +1,8 @@
-package com.example.valorantandroid.data
+package com.example.valorantandroid.feature.agent.data.repository
 
+import com.example.valorantandroid.feature.agent.data.service.ValorantService
+import com.example.valorantandroid.feature.agent.data.model.AgentDetailsNetworkModel
+import com.example.valorantandroid.feature.agent.data.model.AgentsNetworkModel
 import javax.inject.Inject
 
 class AgentsRepository @Inject constructor(

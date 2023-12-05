@@ -1,5 +1,7 @@
-package com.example.valorantandroid.data
+package com.example.valorantandroid.feature.agent.data.service
 
+import com.example.valorantandroid.feature.agent.data.model.AgentDetailsNetworkModel
+import com.example.valorantandroid.feature.agent.data.model.AgentsNetworkModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 

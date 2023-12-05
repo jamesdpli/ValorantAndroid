@@ -1,10 +1,10 @@
-package com.example.valorantandroid.feature.agent
+package com.example.valorantandroid.feature.agent.ui.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.valorantandroid.data.AgentDetailsNetworkModel.Agent
-import com.example.valorantandroid.data.AgentsRepository
+import com.example.valorantandroid.feature.agent.data.model.AgentDetailsNetworkModel.Agent
+import com.example.valorantandroid.feature.agent.data.repository.AgentsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,7 +35,8 @@ class AgentDetailsViewModel @Inject constructor(
 
     fun getAgentDetails(uuid: String) = viewModelScope.launch {
         try {
-            _agentDetailsUiState.value = AgentDetailsUiState.Success(repository.getAgentByUuid(uuid).agent)
+            _agentDetailsUiState.value =
+                AgentDetailsUiState.Success(repository.getAgentByUuid(uuid).agent)
         } catch (e: IOException) {
             _agentDetailsUiState.value = AgentDetailsUiState.Error
         }

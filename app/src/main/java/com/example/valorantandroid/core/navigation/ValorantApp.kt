@@ -1,4 +1,4 @@
-package com.example.valorantandroid.ui.core
+package com.example.valorantandroid.core.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -19,11 +19,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.valorantandroid.ValorantTopAppBar
-import com.example.valorantandroid.feature.agent.AgentDetailsScreen
-import com.example.valorantandroid.feature.agent.AgentDetailsViewModel
-import com.example.valorantandroid.feature.agent.AgentsScreen
-import com.example.valorantandroid.feature.agent.AgentsViewModel
+import com.example.valorantandroid.feature.agent.ui.screen.AgentDetailsScreen
+import com.example.valorantandroid.feature.agent.ui.screen.AgentsScreen
+import com.example.valorantandroid.feature.agent.ui.viewmodel.AgentDetailsViewModel
+import com.example.valorantandroid.feature.agent.ui.viewmodel.AgentsViewModel
 
 private enum class NavDestinations(
     val screenTitle: String,
@@ -47,20 +46,17 @@ fun ValorantApp(
             )
         },
         modifier = modifier
-    )
-    {
+    ) {
         NavHost(
             navController = navController,
             startDestination = "agents",
-            modifier = Modifier
-                .padding(it)
+            modifier = Modifier.padding(it)
         ) {
-            agentsNavGraph(
-                navController = navController
-            )
+            agentsNavGraph(navController = navController)
         }
     }
 }
+
 
 fun NavGraphBuilder.agentsNavGraph(navController: NavController) {
     navigation(
@@ -95,13 +91,16 @@ fun NavGraphBuilder.agentsNavGraph(navController: NavController) {
     }
 }
 
+
 private fun getTopBarTitle(navBackStackEntry: State<NavBackStackEntry?>): String = when (
     navBackStackEntry.value?.destination?.route
 ) {
     NavDestinations.AGENTS_LIST.destinationName ->
         NavDestinations.AGENTS_LIST.screenTitle
+
     NavDestinations.AGENT_DETAILS.destinationName ->
         navBackStackEntry.value?.arguments?.getString("agentName").orEmpty()
+
     else ->
         "Destination name not handled!"
 }

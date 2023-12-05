@@ -1,4 +1,4 @@
-package com.example.valorantandroid.data
+package com.example.valorantandroid.feature.agent.data.model
 
 import com.google.gson.annotations.SerializedName
 
