@@ -1,12 +1,12 @@
-package com.example.valorantandroid.feature.agent.data.repository
+package com.example.valorantandroid.data.agent.repository
 
-import com.example.valorantandroid.feature.agent.data.service.ValorantService
+import com.example.valorantandroid.data.agent.service.ValorantAgentService
 import com.example.valorantandroid.feature.agent.domain.mapper.toDomainModel
 import com.example.valorantandroid.feature.agent.domain.model.AgentDomainModel
 import javax.inject.Inject
 
 class AgentsRepository @Inject constructor(
-    private val valorantService: ValorantService
+    private val valorantService: ValorantAgentService
 ) {
     suspend fun getAgents(): List<AgentDomainModel> = valorantService
         .getAgents()

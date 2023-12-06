@@ -1,6 +1,6 @@
-package com.example.valorantandroid.core.di
+package com.example.valorantandroid.data.di
 
-import com.example.valorantandroid.feature.agent.data.service.ValorantService
+import com.example.valorantandroid.data.agent.service.ValorantAgentService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +29,6 @@ class NetworkModule {
         .build()
 
     @Provides
-    fun provideValorantApi(retrofit: Retrofit): ValorantService = retrofit
-        .create(ValorantService::class.java)
+    fun provideValorantApi(retrofit: Retrofit): ValorantAgentService = retrofit
+        .create(ValorantAgentService::class.java)
 }

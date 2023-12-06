@@ -1,19 +1,19 @@
-package com.example.valorantandroid.feature.agent.data.model
+package com.example.valorantandroid.data.agent.model
 
 import com.google.gson.annotations.SerializedName
 
-data class AgentDetailsNetworkModel(
+data class AgentsNetworkModel(
     @SerializedName("data")
-    val agent: Agent,
+    val agents: List<Agent>,
     val status: Int
 ) {
     data class Agent(
         val abilities: List<Ability>,
         val assetPath: String,
-        val background: String,
+        val background: String?,
         val backgroundGradientColors: List<String>,
         val bustPortrait: String,
-        val characterTags: Any,
+        val characterTags: List<String>,
         val description: String,
         val developerName: String,
         val displayIcon: String,
@@ -27,7 +27,6 @@ data class AgentDetailsNetworkModel(
         val isPlayableCharacter: Boolean,
         @SerializedName("killfeedPortrait")
         val killFeedPortrait: String,
-        val recruitmentData: Any,
         val role: Role,
         val uuid: String,
         val voiceLine: VoiceLine

@@ -1,7 +1,7 @@
 package com.example.valorantandroid.feature.agent.domain.mapper
 
-import com.example.valorantandroid.feature.agent.data.model.AgentDetailsNetworkModel
-import com.example.valorantandroid.feature.agent.data.model.AgentsNetworkModel
+import com.example.valorantandroid.data.agent.model.AgentDetailsNetworkModel
+import com.example.valorantandroid.data.agent.model.AgentsNetworkModel
 import com.example.valorantandroid.feature.agent.domain.model.AgentDomainModel
 
 fun AgentsNetworkModel.Agent.toDomainModel() : AgentDomainModel = AgentDomainModel(
