@@ -17,3 +17,4 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/12 | AgentListToDetailsUiRework | Rework of Agent list to agent details functionality |
 | https://github.com/jamesdpli/ValorantAndroid/pull/13 | SetUpNavGraph | Set up nested navigation |
 | https://github.com/jamesdpli/ValorantAndroid/pull/14 | TopAppBar | Initial TopAppBar implementation |
+| https://github.com/jamesdpli/ValorantAndroid/pull/15 | AddDomainLayer | Initial domain layer implementation |
