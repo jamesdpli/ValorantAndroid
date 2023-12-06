@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.valorantandroid.R
-import com.example.valorantandroid.feature.agent.data.model.AgentsNetworkModel.Agent
+import com.example.valorantandroid.feature.agent.domain.model.AgentDomainModel
 import com.example.valorantandroid.feature.agent.ui.viewmodel.AgentsUiState
 
 @Composable
@@ -48,7 +48,7 @@ fun AgentsScreen(
 
 @Composable
 fun AgentsList(
-    agents: List<Agent>,
+    agents: List<AgentDomainModel>,
     onAgentClicked: (uuid: String, name: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -60,7 +60,7 @@ fun AgentsList(
             AgentItem(
                 agent = it,
                 modifier = Modifier
-                    .clickable { onAgentClicked(it.uuid, it.displayName) }
+                    .clickable { onAgentClicked(it.uuid, it.name) }
             )
         }
     }
@@ -68,7 +68,7 @@ fun AgentsList(
 
 @Composable
 fun AgentItem(
-    agent: Agent,
+    agent: AgentDomainModel,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -78,13 +78,13 @@ fun AgentItem(
     ) {
         AsyncImage(
             model = agent.displayIcon,
-            contentDescription = agent.developerName + "portrait",
+            contentDescription = agent.name + "portrait",
             placeholder = painterResource(id = R.drawable.baseline_broken_image_24),
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
         )
         Text(
-            text = agent.displayName,
+            text = agent.name,
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
