@@ -2,8 +2,8 @@ package com.example.valorantandroid.feature.agent.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.valorantandroid.feature.agent.data.model.AgentsNetworkModel.Agent
 import com.example.valorantandroid.feature.agent.data.repository.AgentsRepository
+import com.example.valorantandroid.feature.agent.domain.model.AgentDomainModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 sealed interface AgentsUiState {
-    data class Success(val agents: List<Agent>) : AgentsUiState
+    data class Success(val agents: List<AgentDomainModel>) : AgentsUiState
     object IsLoading : AgentsUiState
     data class IsError(val message: String) : AgentsUiState
 }
@@ -31,7 +31,7 @@ class AgentsViewModel @Inject constructor(
 
     private fun getAgents() = viewModelScope.launch {
         try {
-            _agentsScreenUiState.value = AgentsUiState.Success(repository.getAgents().agents)
+            _agentsScreenUiState.value = AgentsUiState.Success(repository.getAgents())
         } catch(e: NullPointerException)  {
             _agentsScreenUiState.value = AgentsUiState.IsError(e.message.toString())
         }

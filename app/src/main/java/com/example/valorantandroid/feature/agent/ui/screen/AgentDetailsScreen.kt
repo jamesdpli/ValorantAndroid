@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import coil.compose.AsyncImage
 import com.example.valorantandroid.R
-import com.example.valorantandroid.feature.agent.data.model.AgentDetailsNetworkModel.Agent
+import com.example.valorantandroid.feature.agent.domain.model.AgentDomainModel
 import com.example.valorantandroid.feature.agent.ui.viewmodel.AgentDetailsUiState
 
 @Composable
@@ -29,7 +29,7 @@ fun AgentDetailsScreen(
 
 @Composable
 fun AgentDetails(
-    agent: Agent,
+    agent: AgentDomainModel,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -38,12 +38,12 @@ fun AgentDetails(
         modifier = modifier.fillMaxSize()
     ) {
         Text(
-            text = agent.displayName,
+            text = agent.name,
         )
         AsyncImage(
             model = agent.fullPortrait,
             placeholder = painterResource(id = R.drawable.baseline_broken_image_24),
-            contentDescription = agent.displayName + "portrait"
+            contentDescription = agent.name + "portrait"
         )
         Text(
             text = agent.description,
