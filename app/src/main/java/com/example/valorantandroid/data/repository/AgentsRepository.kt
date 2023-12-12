@@ -1,4 +1,4 @@
-package com.example.valorantandroid.data.agent.repository
+package com.example.valorantandroid.data.repository
 
 import com.example.valorantandroid.data.agent.service.ValorantAgentService
 import com.example.valorantandroid.feature.agent.domain.mapper.toDomainModel

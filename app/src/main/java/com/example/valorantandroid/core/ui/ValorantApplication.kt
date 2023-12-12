@@ -1,4 +1,4 @@
-package com.example.valorantandroid.core
+package com.example.valorantandroid.core.ui
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

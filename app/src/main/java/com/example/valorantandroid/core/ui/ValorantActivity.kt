@@ -1,4 +1,4 @@
-package com.example.valorantandroid.core
+package com.example.valorantandroid.core.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.valorantandroid.core.navigation.ValorantApp
-import com.example.valorantandroid.core.theme.ValorantAndroidTheme
+import com.example.valorantandroid.core.ui.theme.ValorantAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
