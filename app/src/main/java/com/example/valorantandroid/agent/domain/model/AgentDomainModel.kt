@@ -1,4 +1,4 @@
-package com.example.valorantandroid.feature.agent.domain.model
+package com.example.valorantandroid.agent.domain.model
 
 class AgentDomainModel(
     val uuid: String,
