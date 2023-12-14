@@ -18,3 +18,4 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/13 | SetUpNavGraph | Set up nested navigation |
 | https://github.com/jamesdpli/ValorantAndroid/pull/14 | TopAppBar | Initial TopAppBar implementation |
 | https://github.com/jamesdpli/ValorantAndroid/pull/15 | AddDomainLayer | Initial domain layer implementation |
+| https://github.com/jamesdpli/ValorantAndroid/pull/16 | InitalRoomDatabaseImplementation | Inital room database implementation, with example insert statement |
