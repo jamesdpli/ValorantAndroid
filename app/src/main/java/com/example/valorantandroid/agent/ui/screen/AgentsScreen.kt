@@ -1,4 +1,4 @@
-package com.example.valorantandroid.feature.agent.ui.screen
+package com.example.valorantandroid.agent.ui.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,8 +17,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.valorantandroid.R
-import com.example.valorantandroid.feature.agent.domain.model.AgentDomainModel
-import com.example.valorantandroid.feature.agent.ui.viewmodel.AgentsUiState
+import com.example.valorantandroid.agent.domain.model.AgentDomainModel
+import com.example.valorantandroid.agent.ui.viewmodel.AgentsUiState
 
 @Composable
 fun AgentsScreen(

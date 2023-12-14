@@ -19,10 +19,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.valorantandroid.feature.agent.ui.screen.AgentDetailsScreen
-import com.example.valorantandroid.feature.agent.ui.screen.AgentsScreen
-import com.example.valorantandroid.feature.agent.ui.viewmodel.AgentDetailsViewModel
-import com.example.valorantandroid.feature.agent.ui.viewmodel.AgentsViewModel
+import com.example.valorantandroid.agent.ui.screen.AgentDetailsScreen
+import com.example.valorantandroid.agent.ui.screen.AgentsScreen
+import com.example.valorantandroid.agent.ui.viewmodel.AgentDetailsViewModel
+import com.example.valorantandroid.agent.ui.viewmodel.AgentsViewModel
 
 private enum class NavDestinations(
     val screenTitle: String,
