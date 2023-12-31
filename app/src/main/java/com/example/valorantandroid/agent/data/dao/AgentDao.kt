@@ -1,9 +1,10 @@
-package com.example.valorantandroid.data.agent.local
+package com.example.valorantandroid.agent.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.valorantandroid.agent.data.model.local.AgentEntity
 
 @Dao
 interface AgentDao {

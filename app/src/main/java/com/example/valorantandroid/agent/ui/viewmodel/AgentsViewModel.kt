@@ -2,10 +2,10 @@ package com.example.valorantandroid.agent.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.valorantandroid.data.repository.AgentsRepository
+import com.example.valorantandroid.agent.data.repository.AgentsRepository
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
-import com.example.valorantandroid.data.agent.local.AgentDao
-import com.example.valorantandroid.data.agent.local.AgentEntity
+import com.example.valorantandroid.agent.data.dao.AgentDao
+import com.example.valorantandroid.agent.data.model.local.AgentEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

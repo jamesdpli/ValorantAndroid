@@ -2,8 +2,8 @@ package com.example.valorantandroid.core.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.valorantandroid.data.agent.local.AgentDao
-import com.example.valorantandroid.data.agent.local.AgentEntity
+import com.example.valorantandroid.agent.data.dao.AgentDao
+import com.example.valorantandroid.agent.data.model.local.AgentEntity
 
 @Database(
     entities = [AgentEntity::class],

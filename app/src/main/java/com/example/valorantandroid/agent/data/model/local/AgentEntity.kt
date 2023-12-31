@@ -1,4 +1,4 @@
-package com.example.valorantandroid.data.agent.local
+package com.example.valorantandroid.agent.data.model.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
