@@ -2,8 +2,8 @@ package com.example.valorantandroid.core.data.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.valorantandroid.core.data.database.ValorantAppDatabase
 import com.example.valorantandroid.agent.data.dao.AgentDao
+import com.example.valorantandroid.core.data.database.ValorantAppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "agents")
+@Entity(tableName = "favourite_agents")
 data class AgentEntity(
     @PrimaryKey
     val uuid: String,

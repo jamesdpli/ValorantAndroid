@@ -7,7 +7,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,23 +28,28 @@ import com.example.valorantandroid.agent.ui.viewmodel.AgentsUiState
 @Composable
 fun AgentsScreen(
     agentsUiState: AgentsUiState,
+    toggleFavouriteAgent: (AgentDomainModel) -> Unit,
     onAgentClicked: (uuid: String, name: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    when (agentsUiState) {
-        is AgentsUiState.IsLoading -> Text(
+    when {
+        agentsUiState.isLoading -> Text(
             text = "Loading",
             modifier = modifier
                 .fillMaxSize()
         )
-        is AgentsUiState.Success -> AgentsList(
+
+        agentsUiState.isSuccess -> AgentsList(
             agents = agentsUiState.agents,
+            favouriteAgents = agentsUiState.favouriteAgents,
+            toggleFavouriteAgent = toggleFavouriteAgent,
             onAgentClicked = onAgentClicked,
             modifier = modifier
                 .fillMaxSize()
         )
-        is AgentsUiState.IsError -> Text(
-            text = agentsUiState.message,
+
+        !agentsUiState.errorMessage.isNullOrEmpty() -> Text(
+            text = agentsUiState.errorMessage,
             modifier
                 .fillMaxSize()
         )
@@ -49,6 +59,8 @@ fun AgentsScreen(
 @Composable
 fun AgentsList(
     agents: List<AgentDomainModel>,
+    favouriteAgents: List<AgentDomainModel>,
+    toggleFavouriteAgent: (AgentDomainModel) -> Unit,
     onAgentClicked: (uuid: String, name: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -59,6 +71,8 @@ fun AgentsList(
         items(agents) {
             AgentItem(
                 agent = it,
+                favourites = favouriteAgents,
+                toggleFavouriteAgent = toggleFavouriteAgent,
                 modifier = Modifier
                     .clickable { onAgentClicked(it.uuid, it.name) }
             )
@@ -69,6 +83,8 @@ fun AgentsList(
 @Composable
 fun AgentItem(
     agent: AgentDomainModel,
+    favourites: List<AgentDomainModel>,
+    toggleFavouriteAgent: (AgentDomainModel) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -76,6 +92,13 @@ fun AgentItem(
             .fillMaxWidth()
             .padding(5.dp)
     ) {
+        IconButton(onClick = { toggleFavouriteAgent(agent) }) {
+            if (favourites.map { it.uuid }.contains(agent.uuid)) {
+                Icon(imageVector = Icons.Outlined.Favorite, contentDescription = "")
+            } else {
+                Icon(imageVector = Icons.Outlined.FavoriteBorder, contentDescription ="")
+            }
+        }
         AsyncImage(
             model = agent.displayIcon,
             contentDescription = agent.name + "portrait",

@@ -4,29 +4,29 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.valorantandroid.agent.data.repository.AgentsRepository
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
-import com.example.valorantandroid.agent.data.dao.AgentDao
-import com.example.valorantandroid.agent.data.model.local.AgentEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed interface AgentsUiState {
-    data class Success(val agents: List<AgentDomainModel>) : AgentsUiState
-    object IsLoading : AgentsUiState
-    data class IsError(val message: String) : AgentsUiState
-}
+data class AgentsUiState(
+    val isLoading: Boolean = false,
+    val isSuccess: Boolean = false,
+    val errorMessage: String? = null,
+    val agents: List<AgentDomainModel> = emptyList(),
+    val favouriteAgents: List<AgentDomainModel> = emptyList()
+)
 
 @HiltViewModel
 class AgentsViewModel @Inject constructor(
-    private val repository: AgentsRepository,
-    private val dao: AgentDao
+    private val repository: AgentsRepository
 ) : ViewModel() {
 
-    private val _agentsScreenUiState = MutableStateFlow<AgentsUiState>(AgentsUiState.IsLoading)
+    private val _agentsScreenUiState = MutableStateFlow(AgentsUiState())
     val agentsScreenUiState: StateFlow<AgentsUiState> = _agentsScreenUiState.asStateFlow()
 
     init {
@@ -34,20 +34,41 @@ class AgentsViewModel @Inject constructor(
     }
 
     private fun getAgents() = viewModelScope.launch(Dispatchers.IO) {
+        _agentsScreenUiState.update { it.copy(isLoading = true) }
         try {
-            dao.insertAgent(
-                AgentEntity(
-                    uuid = "test-uuid",
-                    name = "test-name",
-                    description = "test-description",
-                    displayIcon = "test-display-icon",
-                    fullPortrait = "test-full-portrait"
+            _agentsScreenUiState.update { agentsScreenUiState ->
+                agentsScreenUiState.copy(
+                    isLoading = false,
+                    isSuccess = true,
+                    agents = repository.getAgentsFromNetwork(),
+                    favouriteAgents = repository.getFavouriteAgents()
                 )
-            )
-            _agentsScreenUiState.value = AgentsUiState.Success(repository.getAgents())
-        } catch (e: NullPointerException) {
-            _agentsScreenUiState.value = AgentsUiState.IsError(e.message.toString())
+            }
+        } catch (e: Exception) {
+            _agentsScreenUiState.update { agentsScreenUiState ->
+                agentsScreenUiState.copy(
+                    isLoading = false,
+                    isSuccess = false,
+                    errorMessage = e.message.toString()
+                )
+            }
         }
     }
 
+    fun toggleFavouriteAgent(agentDomainModel: AgentDomainModel) =
+        viewModelScope.launch(Dispatchers.IO) {
+            if (agentDomainModel.isInFavouriteDatabase()) {
+                repository.deleteFavouriteAgent(agentDomainModel)
+            } else {
+                repository.insertFavouriteAgent(agentDomainModel)
+            }
+            _agentsScreenUiState.update { agentsScreenUiState ->
+                agentsScreenUiState.copy(favouriteAgents = repository.getFavouriteAgents())
+            }
+        }
+
+    private fun AgentDomainModel.isInFavouriteDatabase(): Boolean = repository
+        .getFavouriteAgents()
+        .map { it.uuid }
+        .contains(this.uuid)
 }
