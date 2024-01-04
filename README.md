@@ -19,4 +19,4 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/14 | TopAppBar | Initial TopAppBar implementation |
 | https://github.com/jamesdpli/ValorantAndroid/pull/15 | AddDomainLayer | Initial domain layer implementation |
 | https://github.com/jamesdpli/ValorantAndroid/pull/16 | InitalRoomDatabaseImplementation | Inital room database implementation, with example insert statement |
-| https://github.com/jamesdpli/ValorantAndroid/pull/17 | AddPersistentFavouriteAgentsPartOne | Add a favourites feature to agents on the agents list screen, data is persisted in a room databse |
+| https://github.com/jamesdpli/ValorantAndroid/pull/17 | FavouriteAgentsPartOne | Add a favourites feature to agents on the agents list screen, data is persisted in a room databse |
