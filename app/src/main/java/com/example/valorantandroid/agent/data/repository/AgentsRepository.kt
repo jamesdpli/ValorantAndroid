@@ -22,13 +22,27 @@ class AgentsRepository @Inject constructor(
         .agent
         .toDomainModel()
 
-    fun getFavouriteAgents(): List<AgentDomainModel> = dao
+    fun getAgentsFromDatabase(): List<AgentDomainModel> = dao
         .getAllAgents()
         .map(AgentEntity::toDomainModel)
 
-    fun insertFavouriteAgent(agentDomainModel: AgentDomainModel) = dao
+    fun getFavouriteAgentsFromDatabase(): List<AgentDomainModel> = dao
+        .getAllFavouriteAgents()
+        .map(AgentEntity::toDomainModel)
+
+    fun getAgentFromDatabaseByUuid(uuid: String): AgentDomainModel = dao
+        .getAgentById(uuid)
+        .toDomainModel()
+
+    fun insertAllAgents(agentDomainModel: List<AgentDomainModel>) = dao
+        .insertAllAgents(agentDomainModel.map { it.toEntity() })
+
+    fun insertAgent(agentDomainModel: AgentDomainModel) = dao
         .insertAgent(agentDomainModel.toEntity())
 
-    fun deleteFavouriteAgent(agentDomainModel: AgentDomainModel) = dao
+    fun updateAgent(agentDomainModel: AgentDomainModel) = dao
+        .updateAgent(agentDomainModel.toEntity())
+
+    fun deleteAgent(agentDomainModel: AgentDomainModel) = dao
         .deleteAgent(agentDomainModel.toEntity())
 }

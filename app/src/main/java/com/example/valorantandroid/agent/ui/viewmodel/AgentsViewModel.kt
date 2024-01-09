@@ -33,17 +33,24 @@ class AgentsViewModel @Inject constructor(
         getAgents()
     }
 
+
     private fun getAgents() = viewModelScope.launch(Dispatchers.IO) {
         _agentsScreenUiState.update { it.copy(isLoading = true) }
         try {
+
+            if (repository.getAgentsFromDatabase().isEmpty()) {
+                repository.insertAllAgents(repository.getAgentsFromNetwork())
+            }
+
             _agentsScreenUiState.update { agentsScreenUiState ->
                 agentsScreenUiState.copy(
                     isLoading = false,
                     isSuccess = true,
-                    agents = repository.getAgentsFromNetwork(),
-                    favouriteAgents = repository.getFavouriteAgents()
+                    agents = repository.getAgentsFromDatabase(),
+                    favouriteAgents = repository.getFavouriteAgentsFromDatabase()
                 )
             }
+
         } catch (e: Exception) {
             _agentsScreenUiState.update { agentsScreenUiState ->
                 agentsScreenUiState.copy(
@@ -55,20 +62,19 @@ class AgentsViewModel @Inject constructor(
         }
     }
 
-    fun toggleFavouriteAgent(agentDomainModel: AgentDomainModel) =
-        viewModelScope.launch(Dispatchers.IO) {
-            if (agentDomainModel.isInFavouriteDatabase()) {
-                repository.deleteFavouriteAgent(agentDomainModel)
-            } else {
-                repository.insertFavouriteAgent(agentDomainModel)
+    fun toggleFavourite(agent: AgentDomainModel) = viewModelScope.launch(Dispatchers.IO) {
+        if (!agent.isFavourite) {
+            agent.isFavourite = true
+            repository.updateAgent(agent)
+            _agentsScreenUiState.update {
+                it.copy(favouriteAgents = repository.getFavouriteAgentsFromDatabase())
             }
-            _agentsScreenUiState.update { agentsScreenUiState ->
-                agentsScreenUiState.copy(favouriteAgents = repository.getFavouriteAgents())
+        } else {
+            agent.isFavourite = false
+            repository.updateAgent(agent)
+            _agentsScreenUiState.update {
+                it.copy(favouriteAgents = repository.getFavouriteAgentsFromDatabase())
             }
         }
-
-    private fun AgentDomainModel.isInFavouriteDatabase(): Boolean = repository
-        .getFavouriteAgents()
-        .map { it.uuid }
-        .contains(this.uuid)
+    }
 }
