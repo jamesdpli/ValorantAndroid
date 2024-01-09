@@ -8,8 +8,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.valorantandroid.R
+import com.example.valorantandroid.agent.domain.mapper.toEntity
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
 import com.example.valorantandroid.agent.ui.viewmodel.AgentsUiState
 
@@ -71,7 +72,7 @@ fun AgentsList(
         items(agents) {
             AgentItem(
                 agent = it,
-                favourites = favouriteAgents,
+                favouriteAgents = favouriteAgents,
                 toggleFavouriteAgent = toggleFavouriteAgent,
                 modifier = Modifier
                     .clickable { onAgentClicked(it.uuid, it.name) }
@@ -83,7 +84,7 @@ fun AgentsList(
 @Composable
 fun AgentItem(
     agent: AgentDomainModel,
-    favourites: List<AgentDomainModel>,
+    favouriteAgents: List<AgentDomainModel>,
     toggleFavouriteAgent: (AgentDomainModel) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -93,10 +94,10 @@ fun AgentItem(
             .padding(5.dp)
     ) {
         IconButton(onClick = { toggleFavouriteAgent(agent) }) {
-            if (favourites.map { it.uuid }.contains(agent.uuid)) {
-                Icon(imageVector = Icons.Outlined.Favorite, contentDescription = "")
+            if (favouriteAgents.map { it.toEntity().uuid }.contains(agent.toEntity().uuid)) {
+                Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favourite")
             } else {
-                Icon(imageVector = Icons.Outlined.FavoriteBorder, contentDescription ="")
+                Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "Favourite")
             }
         }
         AsyncImage(

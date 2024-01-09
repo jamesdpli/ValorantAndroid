@@ -33,5 +33,6 @@ fun AgentDomainModel.toEntity(): AgentEntity = AgentEntity(
     name = this.name,
     description = this.description,
     displayIcon = this.displayIcon,
-    fullPortrait = this.fullPortrait
+    fullPortrait = this.fullPortrait,
+    isFavourite = this.isFavourite
 )
