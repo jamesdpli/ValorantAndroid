@@ -1,6 +1,7 @@
 package com.example.valorantandroid.agent.ui.screen
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -8,13 +9,20 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -31,37 +39,95 @@ fun AgentsScreen(
     agentsUiState: AgentsUiState,
     toggleFavouriteAgent: (AgentDomainModel) -> Unit,
     onAgentClicked: (uuid: String, name: String) -> Unit,
+    removeFavouriteAgent: (AgentDomainModel) -> Unit,
     modifier: Modifier = Modifier
 ) {
     when {
-        agentsUiState.isLoading -> Text(
-            text = "Loading",
-            modifier = modifier
-                .fillMaxSize()
-        )
+        agentsUiState.isLoading -> {
+            Text(
+                text = "Loading",
+                modifier = modifier
+                    .fillMaxSize()
+            )
+        }
 
-        agentsUiState.isSuccess -> AgentsList(
-            agents = agentsUiState.agents,
-            favouriteAgents = agentsUiState.favouriteAgents,
-            toggleFavouriteAgent = toggleFavouriteAgent,
-            onAgentClicked = onAgentClicked,
-            modifier = modifier
-                .fillMaxSize()
-        )
+        agentsUiState.isSuccess -> {
+            Column {
+                val tabs = listOf("Agents", "Favourites")
 
-        !agentsUiState.errorMessage.isNullOrEmpty() -> Text(
-            text = agentsUiState.errorMessage,
-            modifier
-                .fillMaxSize()
-        )
+                var tabIndex by remember { mutableIntStateOf(value = 0) }
+
+                TabRow(selectedTabIndex = tabIndex) {
+                    tabs.forEachIndexed { index, tabName ->
+                        Tab(
+                            text = { Text(tabName) },
+                            selected = tabIndex == index,
+                            onClick = { tabIndex = index }
+                        )
+                    }
+                }
+                when (tabIndex) {
+                    0 -> Agents(
+                        agents = agentsUiState.agents,
+                        favouriteAgents = agentsUiState.favouriteAgents,
+                        toggleFavouriteAgent = toggleFavouriteAgent,
+                        onAgentClicked = onAgentClicked,
+                        modifier = modifier
+                            .fillMaxSize()
+                    )
+
+                    1 -> FavouriteAgents(
+                        favouriteAgents = agentsUiState.favouriteAgents,
+                        onAgentClicked = onAgentClicked,
+                        removeFavouriteAgent = removeFavouriteAgent,
+                        modifier = modifier
+                            .fillMaxSize()
+                    )
+                }
+            }
+        }
+
+        !agentsUiState.errorMessage.isNullOrEmpty() -> {
+            Text(
+                text = agentsUiState.errorMessage,
+                modifier
+                    .fillMaxSize()
+            )
+        }
     }
 }
 
 @Composable
-fun AgentsList(
+fun FavouriteAgents(
+    favouriteAgents: List<AgentDomainModel>,
+    onAgentClicked: (uuid: String, name: String) -> Unit,
+    removeFavouriteAgent: (AgentDomainModel) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(count = 2),
+        modifier = modifier
+    ) {
+        items(favouriteAgents) {
+            AgentItem(
+                agent = it,
+                quickActionIcon = {
+                    IconButton(onClick = { removeFavouriteAgent(it) }) {
+                        Icon(imageVector = Icons.Filled.Delete, contentDescription = "")
+                    }
+                },
+                modifier = Modifier
+                    .clickable { onAgentClicked(it.uuid, it.name) }
+            )
+        }
+    }
+}
+
+@Composable
+fun Agents(
     agents: List<AgentDomainModel>,
     favouriteAgents: List<AgentDomainModel>,
-    toggleFavouriteAgent: (AgentDomainModel) -> Unit,
+    toggleFavouriteAgent: (agent: AgentDomainModel) -> Unit,
     onAgentClicked: (uuid: String, name: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -72,8 +138,22 @@ fun AgentsList(
         items(agents) {
             AgentItem(
                 agent = it,
-                favouriteAgents = favouriteAgents,
-                toggleFavouriteAgent = toggleFavouriteAgent,
+                quickActionIcon = {
+                    IconButton(onClick = { toggleFavouriteAgent(it) }) {
+                        if (favouriteAgents.map { it.toEntity().uuid }
+                                .contains(it.toEntity().uuid)) {
+                            Icon(
+                                imageVector = Icons.Filled.Favorite,
+                                contentDescription = "Favourite"
+                            )
+                        } else {
+                            Icon(
+                                imageVector = Icons.Filled.FavoriteBorder,
+                                contentDescription = "Favourite"
+                            )
+                        }
+                    }
+                },
                 modifier = Modifier
                     .clickable { onAgentClicked(it.uuid, it.name) }
             )
@@ -84,8 +164,7 @@ fun AgentsList(
 @Composable
 fun AgentItem(
     agent: AgentDomainModel,
-    favouriteAgents: List<AgentDomainModel>,
-    toggleFavouriteAgent: (AgentDomainModel) -> Unit,
+    quickActionIcon: @Composable () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -93,13 +172,7 @@ fun AgentItem(
             .fillMaxWidth()
             .padding(5.dp)
     ) {
-        IconButton(onClick = { toggleFavouriteAgent(agent) }) {
-            if (favouriteAgents.map { it.toEntity().uuid }.contains(agent.toEntity().uuid)) {
-                Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favourite")
-            } else {
-                Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "Favourite")
-            }
-        }
+        quickActionIcon()
         AsyncImage(
             model = agent.displayIcon,
             contentDescription = agent.name + "portrait",
