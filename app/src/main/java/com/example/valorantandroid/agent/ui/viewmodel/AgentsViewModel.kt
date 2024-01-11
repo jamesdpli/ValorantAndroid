@@ -77,4 +77,12 @@ class AgentsViewModel @Inject constructor(
             }
         }
     }
+
+    fun removeFavouriteAgent(agent: AgentDomainModel) = viewModelScope.launch(Dispatchers.IO) {
+        agent.isFavourite = false
+        repository.updateAgent(agent)
+        _agentsScreenUiState.update {
+            it.copy(favouriteAgents = repository.getFavouriteAgentsFromDatabase())
+        }
+    }
 }
