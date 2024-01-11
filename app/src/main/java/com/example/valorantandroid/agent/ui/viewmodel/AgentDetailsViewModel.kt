@@ -33,7 +33,7 @@ class AgentDetailsViewModel @Inject constructor(
         getAgentDetails(uuidNavArg)
     }
 
-    fun getAgentDetails(uuid: String) = viewModelScope.launch {
+    private fun getAgentDetails(uuid: String) = viewModelScope.launch {
         try {
             _agentDetailsUiState.value =
                 AgentDetailsUiState.Success(repository.getAgentByUuidFromNetwork(uuid))
