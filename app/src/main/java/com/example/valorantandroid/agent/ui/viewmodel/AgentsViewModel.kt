@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.valorantandroid.agent.data.repository.AgentsRepository
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -33,56 +32,46 @@ class AgentsViewModel @Inject constructor(
         getAgents()
     }
 
-
-    private fun getAgents() = viewModelScope.launch(Dispatchers.IO) {
+    private fun getAgents() = viewModelScope.launch {
         _agentsScreenUiState.update { it.copy(isLoading = true) }
         try {
-
-            if (repository.getAgentsFromDatabase().isEmpty()) {
-                repository.insertAllAgents(repository.getAgentsFromNetwork())
-            }
-
             _agentsScreenUiState.update { agentsScreenUiState ->
                 agentsScreenUiState.copy(
                     isLoading = false,
                     isSuccess = true,
-                    agents = repository.getAgentsFromDatabase(),
-                    favouriteAgents = repository.getFavouriteAgentsFromDatabase()
+                    agents = repository.getAgentsFromNetwork(),
+                    favouriteAgents = repository.getAgentsFromDatabase()
                 )
             }
-
         } catch (e: Exception) {
             _agentsScreenUiState.update { agentsScreenUiState ->
                 agentsScreenUiState.copy(
                     isLoading = false,
                     isSuccess = false,
-                    errorMessage = e.message.toString()
+                    errorMessage = e.message
                 )
             }
         }
     }
 
-    fun toggleFavourite(agent: AgentDomainModel) = viewModelScope.launch(Dispatchers.IO) {
-        if (!agent.isFavourite) {
-            agent.isFavourite = true
-            repository.updateAgent(agent)
+    fun toggleFavourite(agent: AgentDomainModel) = viewModelScope.launch {
+        if (!repository.getAgentsFromDatabase().contains(agent)) {
+            repository.insertAgent(agent)
             _agentsScreenUiState.update {
-                it.copy(favouriteAgents = repository.getFavouriteAgentsFromDatabase())
+                it.copy(favouriteAgents = repository.getAgentsFromDatabase())
             }
         } else {
-            agent.isFavourite = false
-            repository.updateAgent(agent)
+            repository.deleteAgent(agent)
             _agentsScreenUiState.update {
-                it.copy(favouriteAgents = repository.getFavouriteAgentsFromDatabase())
+                it.copy(favouriteAgents = repository.getAgentsFromDatabase())
             }
         }
     }
 
-    fun removeFavouriteAgent(agent: AgentDomainModel) = viewModelScope.launch(Dispatchers.IO) {
-        agent.isFavourite = false
-        repository.updateAgent(agent)
+    fun removeFavouriteAgent(agent: AgentDomainModel) = viewModelScope.launch {
+        repository.deleteAgent(agent)
         _agentsScreenUiState.update {
-            it.copy(favouriteAgents = repository.getFavouriteAgentsFromDatabase())
+            it.copy(favouriteAgents = repository.getAgentsFromDatabase())
         }
     }
 }

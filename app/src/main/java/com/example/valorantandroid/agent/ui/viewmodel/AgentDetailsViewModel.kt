@@ -20,8 +20,8 @@ sealed interface AgentDetailsUiState {
 
 @HiltViewModel
 class AgentDetailsViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
-    private val repository: AgentsRepository
+    private val repository: AgentsRepository,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val uuidNavArg: String = checkNotNull(savedStateHandle["agentUuid"])

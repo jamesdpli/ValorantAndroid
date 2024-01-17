@@ -1,10 +1,9 @@
 package com.example.valorantandroid.agent.domain.model
 
-class AgentDomainModel(
+data class AgentDomainModel(
     val uuid: String,
     val name: String,
     val description: String,
     val displayIcon: String,
-    val fullPortrait: String?,
-    var isFavourite: Boolean = false
+    val fullPortrait: String?
 )

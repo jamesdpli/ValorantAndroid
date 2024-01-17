@@ -9,18 +9,21 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+object NetworkModule {
 
     @Provides
+    @Singleton
     fun provideOkHttpInterceptor(): OkHttpClient = OkHttpClient
             .Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
 
     @Provides
+    @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit
         .Builder()
         .client(okHttpClient)
@@ -29,6 +32,7 @@ class NetworkModule {
         .build()
 
     @Provides
+    @Singleton
     fun provideValorantApi(retrofit: Retrofit): ValorantAgentService = retrofit
         .create(ValorantAgentService::class.java)
 }

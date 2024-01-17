@@ -15,7 +15,5 @@ data class AgentEntity(
     @ColumnInfo(name = "display_icon")
     val displayIcon: String,
     @ColumnInfo(name = "full_portrait")
-    val fullPortrait: String?,
-    @ColumnInfo(name = "is_favourite")
-    val isFavourite: Boolean
+    val fullPortrait: String?
 )

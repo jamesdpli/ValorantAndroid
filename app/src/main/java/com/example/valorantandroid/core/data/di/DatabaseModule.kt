@@ -14,8 +14,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideValorantAppDatabase(application: Application): ValorantAppDatabase = Room
         .databaseBuilder(
             context = application,
@@ -26,7 +26,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideAgentDao(valorantAppDatabase: ValorantAppDatabase): AgentDao =
-        valorantAppDatabase.agentDao()
+    fun provideAgentDao(valorantAppDatabase: ValorantAppDatabase): AgentDao = valorantAppDatabase
+        .agentDao()
 
 }

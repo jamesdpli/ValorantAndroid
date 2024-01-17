@@ -13,9 +13,6 @@ interface AgentDao {
     @Query("SELECT * FROM favourite_agents")
     fun getAllAgents(): List<AgentEntity>
 
-    @Query("SELECT * FROM favourite_agents WHERE is_favourite == 1")
-    fun getAllFavouriteAgents(): List<AgentEntity>
-
     @Query("SELECT * FROM favourite_agents WHERE :uuid == uuid")
     fun getAgentById(uuid: String): AgentEntity
 
