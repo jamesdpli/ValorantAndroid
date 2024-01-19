@@ -5,6 +5,5 @@ class AgentDomainModel(
     val name: String,
     val description: String,
     val displayIcon: String,
-    val fullPortrait: String?,
-    var isFavourite: Boolean = false
+    val fullPortrait: String?
 )

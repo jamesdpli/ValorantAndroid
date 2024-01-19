@@ -52,11 +52,6 @@ android {
 }
 
 dependencies {
-    // Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
-    testImplementation("androidx.room:room-testing:2.6.1")
-
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.1")
 
