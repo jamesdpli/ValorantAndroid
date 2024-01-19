@@ -24,3 +24,5 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/19 | AddTabs | Add tabs so the user can view their favourite agents seperatly from the list of agents |
 | ~~https://github.com/jamesdpli/ValorantAndroid/pull/20~~ | ~~PrepareViewModelForTesting~~ | ~~Closed PR~~ |
 | https://github.com/jamesdpli/ValorantAndroid/pull/21 | RevertFavourites | Add tabs so the user can view their favourite agents seperatly from the list of agents |
+| https://github.com/jamesdpli/ValorantAndroid/pull/22 | AgentsViewModelTest | Make AgentsViewModel have 100% unit test coverage |
+
