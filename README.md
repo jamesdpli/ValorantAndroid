@@ -22,3 +22,5 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/17 | FavouriteAgentsPartOne | Add a favourites feature to agents on the agents list screen, data is persisted in a room database |
 | https://github.com/jamesdpli/ValorantAndroid/pull/18 | FavouriteAgentsPartTwo | Improve favourite agents feature by moving towards an offline first model |
 | https://github.com/jamesdpli/ValorantAndroid/pull/19 | AddTabs | Add tabs so the user can view their favourite agents seperatly from the list of agents |
+| ~~https://github.com/jamesdpli/ValorantAndroid/pull/20~~ | ~~PrepareViewModelForTesting~~ | ~~Closed PR~~ |
+| https://github.com/jamesdpli/ValorantAndroid/pull/21 | RevertFavourites | Add tabs so the user can view their favourite agents seperatly from the list of agents |
