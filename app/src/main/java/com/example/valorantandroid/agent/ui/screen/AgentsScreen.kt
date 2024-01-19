@@ -21,28 +21,28 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.valorantandroid.R
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
-import com.example.valorantandroid.agent.ui.viewmodel.AgentsUiState
+import com.example.valorantandroid.agent.ui.viewmodel.AgentUiState
 
 @Composable
 fun AgentsScreen(
-    agentsUiState: AgentsUiState,
+    agentsUiState: AgentUiState,
     onAgentClicked: (uuid: String, name: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (agentsUiState) {
-        is AgentsUiState.Error -> Text(
+        is AgentUiState.Error -> Text(
             text = agentsUiState.message,
             modifier
                 .fillMaxSize()
         )
 
-        is AgentsUiState.Loading -> CircularProgressIndicator(
+        is AgentUiState.Loading -> CircularProgressIndicator(
             modifier = modifier
                 .fillMaxSize()
                 .wrapContentSize(align = Alignment.Center)
         )
 
-        is AgentsUiState.Success -> Column {
+        is AgentUiState.Success -> Column {
             Agents(
                 agents = agentsUiState.agents,
                 onAgentClicked = onAgentClicked,
