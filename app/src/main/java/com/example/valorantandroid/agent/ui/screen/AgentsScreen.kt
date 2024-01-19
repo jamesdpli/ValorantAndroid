@@ -5,10 +5,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,10 +36,10 @@ fun AgentsScreen(
                 .fillMaxSize()
         )
 
-        is AgentsUiState.Loading -> Text(
-            text = "Loading",
+        is AgentsUiState.Loading -> CircularProgressIndicator(
             modifier = modifier
                 .fillMaxSize()
+                .wrapContentSize(align = Alignment.Center)
         )
 
         is AgentsUiState.Success -> Column {
@@ -47,8 +49,6 @@ fun AgentsScreen(
                 modifier = modifier
                     .fillMaxSize()
             )
-
-
         }
     }
 }
@@ -86,7 +86,7 @@ fun AgentItem(
         AsyncImage(
             model = agent.displayIcon,
             contentDescription = agent.name + "portrait",
-            placeholder = painterResource(id = R.drawable.baseline_broken_image_24),
+            placeholder = painterResource(id = R.drawable.baseline_image_24),
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
         )

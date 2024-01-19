@@ -14,6 +14,7 @@ interface AgentsRepository {
 class AgentsRepositoryImpl @Inject constructor(
     private val valorantService: ValorantAgentService
 ) : AgentsRepository {
+
     override suspend fun getAgentsFromNetwork(): List<AgentDomainModel> = valorantService
         .getAgents()
         .agents

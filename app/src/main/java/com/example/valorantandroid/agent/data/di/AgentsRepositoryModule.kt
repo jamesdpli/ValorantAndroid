@@ -20,4 +20,5 @@ object AgentsRepositoryModule {
     ): AgentsRepository = AgentsRepositoryImpl(
         valorantService = valorantService
     )
+
 }

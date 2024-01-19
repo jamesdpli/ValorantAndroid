@@ -3,6 +3,8 @@ package com.example.valorantandroid.agent.ui.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,9 +22,19 @@ fun AgentDetailsScreen(
     modifier: Modifier = Modifier
 ) {
     when (agentDetailsUiState) {
-        is AgentDetailsUiState.Success -> AgentDetails(agent = agentDetailsUiState.agent)
-        is AgentDetailsUiState.Loading -> Text(text = "Loading", modifier = modifier.fillMaxSize())
-        is AgentDetailsUiState.Error -> Text(text = "Error")
+        is AgentDetailsUiState.Success -> AgentDetails(
+            agent = agentDetailsUiState.agent,
+            modifier = modifier
+        )
+        is AgentDetailsUiState.Loading -> CircularProgressIndicator(
+            modifier = modifier
+                .fillMaxSize()
+                .wrapContentSize(align = Alignment.Center)
+        )
+        is AgentDetailsUiState.Error -> Text(
+            text = "Error",
+            modifier = modifier
+        )
     }
 }
 
@@ -42,7 +54,7 @@ fun AgentDetails(
         )
         AsyncImage(
             model = agent.fullPortrait,
-            placeholder = painterResource(id = R.drawable.baseline_broken_image_24),
+            placeholder = painterResource(id = R.drawable.baseline_image_24),
             contentDescription = agent.name + "portrait"
         )
         Text(

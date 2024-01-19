@@ -8,6 +8,7 @@ import com.example.valorantandroid.agent.domain.model.AgentDomainModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.IOException
 import javax.inject.Inject
@@ -26,7 +27,8 @@ class AgentDetailsViewModel @Inject constructor(
 
     private val uuidNavArg: String = checkNotNull(savedStateHandle["agentUuid"])
 
-    private var _agentDetailsUiState = MutableStateFlow<AgentDetailsUiState>(AgentDetailsUiState.Loading)
+    private var _agentDetailsUiState =
+        MutableStateFlow<AgentDetailsUiState>(AgentDetailsUiState.Loading)
     val agentDetailsUiState = _agentDetailsUiState.asStateFlow()
 
     init {
@@ -35,10 +37,14 @@ class AgentDetailsViewModel @Inject constructor(
 
     private fun getAgentDetails(uuid: String) = viewModelScope.launch {
         try {
-            _agentDetailsUiState.value =
-                AgentDetailsUiState.Success(repository.getAgentByUuidFromNetwork(uuid))
+            _agentDetailsUiState.update {
+                return@update AgentDetailsUiState
+                    .Success(repository.getAgentByUuidFromNetwork(uuid))
+            }
         } catch (e: IOException) {
-            _agentDetailsUiState.value = AgentDetailsUiState.Error
+            _agentDetailsUiState.update {
+                return@update AgentDetailsUiState.Error
+            }
         }
     }
 }
