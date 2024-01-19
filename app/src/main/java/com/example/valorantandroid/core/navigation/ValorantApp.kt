@@ -70,12 +70,6 @@ fun NavGraphBuilder.agentsNavGraph(navController: NavController) {
             val agentsUiState by viewModel.agentsScreenUiState.collectAsState()
             AgentsScreen(
                 agentsUiState = agentsUiState,
-                toggleFavouriteAgent = {
-                    viewModel.toggleFavourite(it)
-                },
-                removeFavouriteAgent = {
-                    viewModel.removeFavouriteAgent(it)
-                },
                 onAgentClicked = { uuid, name ->
                     navController.navigate("agentList/$uuid/$name")
                 }
