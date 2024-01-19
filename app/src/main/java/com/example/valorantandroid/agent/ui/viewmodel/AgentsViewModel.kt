@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed interface AgentsUiState {
-    object Loading : AgentsUiState
-    data class Error(val message: String) : AgentsUiState
-    data class Success(val agents: List<AgentDomainModel>) : AgentsUiState
+sealed interface AgentUiState {
+    object Loading : AgentUiState
+    data class Error(val message: String) : AgentUiState
+    data class Success(val agents: List<AgentDomainModel>) : AgentUiState
 }
 
 @HiltViewModel
@@ -23,22 +23,22 @@ class AgentsViewModel @Inject constructor(
     private val repository: AgentsRepository
 ) : ViewModel() {
 
-    private val _agentsScreenUiState = MutableStateFlow<AgentsUiState>(AgentsUiState.Loading)
-    val agentsScreenUiState: StateFlow<AgentsUiState> = _agentsScreenUiState.asStateFlow()
+    private val _agentsScreenUiState = MutableStateFlow<AgentUiState>(AgentUiState.Loading)
+    val agentsScreenUiState: StateFlow<AgentUiState> = _agentsScreenUiState.asStateFlow()
 
     init {
         getAgents()
     }
 
     private fun getAgents() = viewModelScope.launch {
-        val networkAgent = repository.getAgentsFromNetwork()
         try {
+            val networkAgent = repository.getAgentsFromNetwork()
             _agentsScreenUiState.update {
-                return@update AgentsUiState.Success(agents = networkAgent)
+                return@update AgentUiState.Success(agents = networkAgent)
             }
         } catch (e: Exception) {
             _agentsScreenUiState.update {
-                return@update AgentsUiState.Error(message = e.message.toString())
+                return@update AgentUiState.Error(message = e.message.toString())
             }
         }
     }
