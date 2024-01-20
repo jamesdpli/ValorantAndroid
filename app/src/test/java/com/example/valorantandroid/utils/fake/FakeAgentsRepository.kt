@@ -1,8 +1,8 @@
-package com.example.valorantandroid.agent.data.repository.fake
+package com.example.valorantandroid.utils.fake
 
+import com.example.valorantandroid.utils.TestUtils
 import com.example.valorantandroid.agent.data.repository.AgentsRepository
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
-import com.example.valorantandroid.core.utils.TestUtils
 
 /**
  * FakeAgentsRepository acting as a test double (a fake) for AgentRepositoryImpl.
@@ -13,7 +13,7 @@ import com.example.valorantandroid.core.utils.TestUtils
 class FakeAgentsRepository : AgentsRepository {
 
     private var isApiError = false
-    private val agents = TestUtils.fakeAgentsList
+    private val agents = TestUtils.fakeDomainAgentsList
 
     /**
      * FakeAgentsRepository exclusive API for handling the creation of fake network api errors
@@ -28,11 +28,15 @@ class FakeAgentsRepository : AgentsRepository {
         throw Exception(EXCEPTION)
     }
 
-    override suspend fun getAgentByUuidFromNetwork(uuid: String): AgentDomainModel =
-        getAgentsFromNetwork().find { it.uuid == uuid } ?: throw Exception(AGENT_NOT_FOUND)
+    override suspend fun getAgentByUuidFromNetwork(uuid: String): AgentDomainModel {
+        return if (!isApiError && uuid == TestUtils.fakeDomainAgentOne.uuid) {
+            TestUtils.fakeDomainAgentOne
+        } else {
+            throw Exception(EXCEPTION)
+        }
+    }
 
     companion object {
         const val EXCEPTION = "There is an api error!"
-        private const val AGENT_NOT_FOUND = "There is an api error!"
     }
 }
