@@ -23,6 +23,7 @@ import com.example.valorantandroid.agent.ui.screen.AgentDetailsScreen
 import com.example.valorantandroid.agent.ui.screen.AgentsScreen
 import com.example.valorantandroid.agent.ui.viewmodel.AgentDetailsViewModel
 import com.example.valorantandroid.agent.ui.viewmodel.AgentsViewModel
+import com.example.valorantandroid.core.utils.constants.Constants
 
 private enum class NavDestinations(
     val screenTitle: String,
@@ -78,7 +79,7 @@ fun NavGraphBuilder.agentsNavGraph(navController: NavController) {
         composable(
             route = "agentList/{agentUuid}/{agentName}",
             arguments = listOf(
-                navArgument("agentUuid") { type = NavType.StringType },
+                navArgument(Constants.NavArgs.AGENT_UUID) { type = NavType.StringType },
                 navArgument("agentName") { type = NavType.StringType },
             )
         ) {

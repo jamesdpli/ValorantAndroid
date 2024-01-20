@@ -15,10 +15,7 @@ object AgentsRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideAgentsRepositoryImpl(
-        valorantService: ValorantAgentService
-    ): AgentsRepository = AgentsRepositoryImpl(
-        valorantService = valorantService
-    )
+    fun provideAgentsRepositoryImpl(valorantService: ValorantAgentService): AgentsRepository =
+        AgentsRepositoryImpl(valorantService = valorantService)
 
 }

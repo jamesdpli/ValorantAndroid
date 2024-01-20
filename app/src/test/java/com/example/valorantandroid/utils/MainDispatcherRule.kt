@@ -1,4 +1,4 @@
-package com.example.valorantandroid
+package com.example.valorantandroid.utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

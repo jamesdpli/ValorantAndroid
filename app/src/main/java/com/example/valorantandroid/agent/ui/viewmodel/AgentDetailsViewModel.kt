@@ -5,18 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.valorantandroid.agent.data.repository.AgentsRepository
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
+import com.example.valorantandroid.core.utils.constants.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.io.IOException
 import javax.inject.Inject
 
 sealed interface AgentDetailsUiState {
     data class Success(val agent: AgentDomainModel) : AgentDetailsUiState
     object Loading : AgentDetailsUiState
-    object Error : AgentDetailsUiState
+    data class Error(val message: String) : AgentDetailsUiState
 }
 
 @HiltViewModel
@@ -25,7 +25,9 @@ class AgentDetailsViewModel @Inject constructor(
     private val repository: AgentsRepository
 ) : ViewModel() {
 
-    private val uuidNavArg: String = checkNotNull(savedStateHandle["agentUuid"])
+    private val uuidNavArg: String = checkNotNull(
+        savedStateHandle[Constants.NavArgs.AGENT_UUID]
+    )
 
     private var _agentDetailsUiState =
         MutableStateFlow<AgentDetailsUiState>(AgentDetailsUiState.Loading)
@@ -37,13 +39,13 @@ class AgentDetailsViewModel @Inject constructor(
 
     private fun getAgentDetails(uuid: String) = viewModelScope.launch {
         try {
+            val agent = repository.getAgentByUuidFromNetwork(uuid)
             _agentDetailsUiState.update {
-                return@update AgentDetailsUiState
-                    .Success(repository.getAgentByUuidFromNetwork(uuid))
+                return@update AgentDetailsUiState.Success(agent = agent)
             }
-        } catch (e: IOException) {
+        } catch (e: Exception) {
             _agentDetailsUiState.update {
-                return@update AgentDetailsUiState.Error
+                return@update AgentDetailsUiState.Error(message = e.message.toString())
             }
         }
     }
