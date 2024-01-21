@@ -26,3 +26,4 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/21 | RevertFavourites | Add tabs so the user can view their favourite agents seperatly from the list of agents |
 | https://github.com/jamesdpli/ValorantAndroid/pull/22 | AgentsViewModelTest | Make AgentsViewModel have 100% unit test coverage |
 | https://github.com/jamesdpli/ValorantAndroid/pull/23 | TestMapperAndDetailViewModel | Add tests for mapper and AgentsDetailViewModel  |
+| https://github.com/jamesdpli/ValorantAndroid/pull/24 | CoverRepositoryInTest | Add tests for AgentsRepositoryImpl  |
