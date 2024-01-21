@@ -9,6 +9,7 @@ object TestUtils {
     private const val PLACE_HOLDER_STRING = "place-holder-string"
     private const val PLACE_HOLDER_DOUBLE = 22.5
     private const val PLACE_HOLDER_INT = 7
+    private const val PLACE_HOLDER_STATUS_CODE = 200
 
     private const val AGENT_ONE_UUID = "fake-uuid-one"
     private const val AGENT_ONE_NAME = "fakey-one"
@@ -159,8 +160,13 @@ object TestUtils {
         )
     )
 
+    val netWorkAgentDetailWithStatus = AgentDetailsNetworkModel(
+        agent = networkAgentDetail,
+        status = PLACE_HOLDER_STATUS_CODE
+    )
+
     val networkAgents = AgentsNetworkModel(
         agents = listOf(networkAgent),
-        status = 500
+        status = PLACE_HOLDER_STATUS_CODE
     )
 }

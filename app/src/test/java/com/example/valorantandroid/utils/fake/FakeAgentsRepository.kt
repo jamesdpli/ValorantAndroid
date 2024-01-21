@@ -16,7 +16,7 @@ class FakeAgentsRepository : AgentsRepository {
     private val agents = TestUtils.fakeDomainAgentsList
 
     /**
-     * FakeAgentsRepository exclusive API for handling the creation of fake network api errors
+     * FakeAgentsRepository exclusive API for handling the creation of fake api errors
      */
     fun setIsApiErrorTrue() {
         this.isApiError = true
@@ -28,13 +28,13 @@ class FakeAgentsRepository : AgentsRepository {
         throw Exception(EXCEPTION)
     }
 
-    override suspend fun getAgentByUuidFromNetwork(uuid: String): AgentDomainModel {
-        return if (!isApiError && uuid == TestUtils.fakeDomainAgentOne.uuid) {
+    override suspend fun getAgentByUuidFromNetwork(uuid: String): AgentDomainModel =
+        if (!isApiError && uuid == TestUtils.fakeDomainAgentOne.uuid) {
             TestUtils.fakeDomainAgentOne
         } else {
             throw Exception(EXCEPTION)
         }
-    }
+
 
     companion object {
         const val EXCEPTION = "There is an api error!"
