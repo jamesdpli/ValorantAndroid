@@ -1,4 +1,4 @@
-package com.example.valorantandroid.agent.ui.domain
+package com.example.valorantandroid.agent.domain
 
 import com.example.valorantandroid.agent.data.model.network.AgentsNetworkModel
 import com.example.valorantandroid.agent.domain.mapper.toDomainModel
