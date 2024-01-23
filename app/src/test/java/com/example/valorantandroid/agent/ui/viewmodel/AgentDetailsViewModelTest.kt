@@ -54,7 +54,7 @@ class AgentDetailsViewModelTest {
             }
 
             assertEquals(
-                AgentDetailsUiState.Success(agent = TestUtils.fakeDomainAgentOne),
+                AgentDetailsUiState.Success(agent = TestUtils.fakeDomainAgentDetailOne),
                 values.last()
             )
         }

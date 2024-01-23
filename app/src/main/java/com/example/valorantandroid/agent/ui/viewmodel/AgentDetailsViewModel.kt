@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.valorantandroid.agent.data.repository.AgentsRepository
-import com.example.valorantandroid.agent.domain.model.AgentDomainModel
+import com.example.valorantandroid.agent.domain.model.AgentDetailDomainModel
 import com.example.valorantandroid.core.utils.constants.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 sealed interface AgentDetailsUiState {
-    data class Success(val agent: AgentDomainModel) : AgentDetailsUiState
+    data class Success(val agent: AgentDetailDomainModel) : AgentDetailsUiState
     object Loading : AgentDetailsUiState
     data class Error(val message: String) : AgentDetailsUiState
 }

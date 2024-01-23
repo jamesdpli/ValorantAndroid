@@ -2,6 +2,7 @@ package com.example.valorantandroid.agent.domain.mapper
 
 import com.example.valorantandroid.agent.data.model.network.AgentDetailsNetworkModel
 import com.example.valorantandroid.agent.data.model.network.AgentsNetworkModel
+import com.example.valorantandroid.agent.domain.model.AgentDetailDomainModel
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
 
 fun AgentsNetworkModel.Agent.toDomainModel() : AgentDomainModel = AgentDomainModel(
@@ -12,10 +13,11 @@ fun AgentsNetworkModel.Agent.toDomainModel() : AgentDomainModel = AgentDomainMod
     fullPortrait = this.fullPortrait
 )
 
-fun AgentDetailsNetworkModel.Agent.toDomainModel(): AgentDomainModel = AgentDomainModel(
+fun AgentDetailsNetworkModel.Agent.toDomainModel(): AgentDetailDomainModel = AgentDetailDomainModel(
     uuid = this.uuid,
     name = this.displayName,
     description = this.description,
-    displayIcon = this.displayIcon,
+    abilities = this.abilities,
+    role = this.role,
     fullPortrait = this.fullPortrait
 )

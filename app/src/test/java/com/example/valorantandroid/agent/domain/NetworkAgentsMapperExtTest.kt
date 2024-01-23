@@ -2,6 +2,7 @@ package com.example.valorantandroid.agent.domain
 
 import com.example.valorantandroid.agent.data.model.network.AgentsNetworkModel
 import com.example.valorantandroid.agent.domain.mapper.toDomainModel
+import com.example.valorantandroid.agent.domain.model.AgentDetailDomainModel
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
 import com.example.valorantandroid.utils.TestUtils
 import org.junit.Assert.assertEquals
@@ -14,6 +15,15 @@ class NetworkAgentsMapperExtTest {
         name = TestUtils.NETWORK_AGENT_DISPLAY_NAME,
         description = TestUtils.NETWORK_AGENT_DESCRIPTION,
         displayIcon = TestUtils.NETWORK_AGENT_DISPLAY_ICON,
+        fullPortrait = TestUtils.NETWORK_AGENT_FULL_PORTRAIT
+    )
+
+    private val mappedAgentDetail = AgentDetailDomainModel(
+        uuid = TestUtils.NETWORK_AGENT_UUID,
+        name = TestUtils.NETWORK_AGENT_DISPLAY_NAME,
+        description = TestUtils.NETWORK_AGENT_DESCRIPTION,
+        role = TestUtils.NETWORK_AGENT_ROLE,
+        abilities = listOf(TestUtils.NETWORK_AGENT_ABILITY),
         fullPortrait = TestUtils.NETWORK_AGENT_FULL_PORTRAIT
     )
 
@@ -85,7 +95,7 @@ class NetworkAgentsMapperExtTest {
     @Test
     fun `WHEN toDomainModel on AgentDetailsNetworkModel THEN expect uuid to be mapped`() {
         assertEquals(
-            mappedAgent.uuid,
+            mappedAgentDetail.uuid,
             TestUtils
                 .networkAgentDetail
                 .toDomainModel()
@@ -96,7 +106,7 @@ class NetworkAgentsMapperExtTest {
     @Test
     fun `WHEN toDomainModel on AgentDetailsNetworkModel THEN expect name to be mapped`() {
         assertEquals(
-            mappedAgent.name,
+            mappedAgentDetail.name,
             TestUtils
                 .networkAgentDetail
                 .toDomainModel()
@@ -105,20 +115,9 @@ class NetworkAgentsMapperExtTest {
     }
 
     @Test
-    fun `WHEN toDomainModel on AgentDetailsNetworkModel THEN expect displayIcon to be mapped`() {
-        assertEquals(
-            mappedAgent.displayIcon,
-            TestUtils
-                .networkAgentDetail
-                .toDomainModel()
-                .displayIcon
-        )
-    }
-
-    @Test
     fun `WHEN toDomainModel on AgentDetailsNetworkModel THEN expect description to be mapped`() {
         assertEquals(
-            mappedAgent.description,
+            mappedAgentDetail.description,
             TestUtils
                 .networkAgentDetail
                 .toDomainModel()
@@ -127,9 +126,31 @@ class NetworkAgentsMapperExtTest {
     }
 
     @Test
+    fun `WHEN toDomainModel on AgentDetailsNetworkModel THEN expect abilities to be mapped`() {
+        assertEquals(
+            mappedAgentDetail.abilities,
+            TestUtils
+                .networkAgentDetail
+                .toDomainModel()
+                .abilities
+        )
+    }
+
+    @Test
+    fun `WHEN toDomainModel on AgentDetailsNetworkModel THEN expect role to be mapped`() {
+        assertEquals(
+            mappedAgentDetail.role,
+            TestUtils
+                .networkAgentDetail
+                .toDomainModel()
+                .role
+        )
+    }
+
+    @Test
     fun `WHEN toDomainModel on AgentDetailsNetworkModel THEN expect fullPortrait to be mapped`() {
         assertEquals(
-            mappedAgent.fullPortrait,
+            mappedAgentDetail.fullPortrait,
             TestUtils
                 .networkAgentDetail
                 .toDomainModel()

@@ -2,6 +2,7 @@ package com.example.valorantandroid.utils
 
 import com.example.valorantandroid.agent.data.model.network.AgentDetailsNetworkModel
 import com.example.valorantandroid.agent.data.model.network.AgentsNetworkModel
+import com.example.valorantandroid.agent.domain.model.AgentDetailDomainModel
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
 
 object TestUtils {
@@ -34,6 +35,19 @@ object TestUtils {
     const val NETWORK_AGENT_FULL_PORTRAIT = "full flying agent portrait"
     const val NETWORK_AGENT_DISPLAY_NAME = "Flyguy"
     const val NETWORK_AGENT_UUID = "fly-guy-uuid"
+    val NETWORK_AGENT_ROLE = AgentDetailsNetworkModel.Agent.Role(
+        assetPath = PLACE_HOLDER_STRING,
+        description = PLACE_HOLDER_STRING,
+        displayIcon = PLACE_HOLDER_STRING,
+        displayName = PLACE_HOLDER_STRING,
+        uuid = PLACE_HOLDER_STRING
+    )
+    val NETWORK_AGENT_ABILITY = AgentDetailsNetworkModel.Agent.Ability(
+        description = PLACE_HOLDER_STRING,
+        displayIcon = PLACE_HOLDER_STRING,
+        displayName = PLACE_HOLDER_STRING,
+        slot = PLACE_HOLDER_STRING
+    )
 
     val fakeDomainAgentOne = AgentDomainModel(
         uuid = AGENT_ONE_UUID,
@@ -57,6 +71,15 @@ object TestUtils {
         description = AGENT_THREE_DESCRIPTION,
         displayIcon = DISPLAY_THREE_ICON,
         fullPortrait = AGENT_THREE_FULL_PORTRAIT
+    )
+
+    val fakeDomainAgentDetailOne = AgentDetailDomainModel(
+        uuid = AGENT_ONE_UUID,
+        name = AGENT_ONE_NAME,
+        description = AGENT_ONE_DESCRIPTION,
+        abilities = listOf(NETWORK_AGENT_ABILITY),
+        role = NETWORK_AGENT_ROLE,
+        fullPortrait = AGENT_ONE_FULL_PORTRAIT
     )
 
     val fakeDomainAgentsList = listOf(
@@ -90,7 +113,7 @@ object TestUtils {
         isBaseContent = true,
         isFullPortraitRightFacing = true,
         isPlayableCharacter = true,
-        killFeedPortrait = PLACE_HOLDER_STRING,
+        killfeedPortrait = PLACE_HOLDER_STRING,
         recruitmentData = PLACE_HOLDER_STRING,
         role = AgentDetailsNetworkModel.Agent.Role(
             assetPath = PLACE_HOLDER_STRING,
@@ -106,7 +129,7 @@ object TestUtils {
                 AgentDetailsNetworkModel.Agent.VoiceLine.Media(
                     id = PLACE_HOLDER_INT,
                     wave = PLACE_HOLDER_STRING,
-                    wise = PLACE_HOLDER_STRING
+                    wwise = PLACE_HOLDER_STRING
                 )
             ),
             minDuration = PLACE_HOLDER_DOUBLE
@@ -138,7 +161,7 @@ object TestUtils {
         isBaseContent = true,
         isFullPortraitRightFacing = true,
         isPlayableCharacter = true,
-        killFeedPortrait = PLACE_HOLDER_STRING,
+        killfeedPortrait = PLACE_HOLDER_STRING,
         role = AgentsNetworkModel.Agent.Role(
             assetPath = PLACE_HOLDER_STRING,
             description = PLACE_HOLDER_STRING,
@@ -153,7 +176,7 @@ object TestUtils {
                 AgentsNetworkModel.Agent.VoiceLine.Media(
                     id = PLACE_HOLDER_INT,
                     wave = PLACE_HOLDER_STRING,
-                    wise = PLACE_HOLDER_STRING
+                    wwise = PLACE_HOLDER_STRING
                 )
             ),
             minDuration = PLACE_HOLDER_DOUBLE

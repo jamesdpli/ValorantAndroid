@@ -25,8 +25,7 @@ data class AgentDetailsNetworkModel(
         val isBaseContent: Boolean,
         val isFullPortraitRightFacing: Boolean,
         val isPlayableCharacter: Boolean,
-        @SerializedName("killfeedPortrait")
-        val killFeedPortrait: String,
+        val killfeedPortrait: String,
         val recruitmentData: Any,
         val role: Role,
         val uuid: String,
@@ -53,8 +52,7 @@ data class AgentDetailsNetworkModel(
             data class Media(
                 val id: Int,
                 val wave: String,
-                @SerializedName("wwise")
-                val wise: String
+                val wwise: String
             )
         }
     }

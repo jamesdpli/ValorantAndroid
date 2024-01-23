@@ -2,6 +2,7 @@ package com.example.valorantandroid.utils.fake
 
 import com.example.valorantandroid.utils.TestUtils
 import com.example.valorantandroid.agent.data.repository.AgentsRepository
+import com.example.valorantandroid.agent.domain.model.AgentDetailDomainModel
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
 
 /**
@@ -28,9 +29,9 @@ class FakeAgentsRepository : AgentsRepository {
         throw Exception(EXCEPTION)
     }
 
-    override suspend fun getAgentByUuidFromNetwork(uuid: String): AgentDomainModel =
+    override suspend fun getAgentByUuidFromNetwork(uuid: String): AgentDetailDomainModel =
         if (!isApiError && uuid == TestUtils.fakeDomainAgentOne.uuid) {
-            TestUtils.fakeDomainAgentOne
+            TestUtils.fakeDomainAgentDetailOne
         } else {
             throw Exception(EXCEPTION)
         }

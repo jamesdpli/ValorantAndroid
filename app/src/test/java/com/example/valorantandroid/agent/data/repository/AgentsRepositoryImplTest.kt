@@ -79,13 +79,24 @@ class AgentsRepositoryImplTest {
         }
 
     @Test
-    fun `WHEN getAgentByUuidFromNetwork THEN networkAgentDetail displayIcon mapped to domainModel`()
-        = runTest {
+    fun `WHEN getAgentByUuidFromNetwork THEN networkAgentDetail abilities mapped to domainModel`() =
+        runTest {
             Assert.assertEquals(
-                TestUtils.netWorkAgentDetailWithStatus.agent.toDomainModel().displayIcon,
+                TestUtils.netWorkAgentDetailWithStatus.agent.toDomainModel().abilities,
                 agentsRepository
                     .getAgentByUuidFromNetwork(TestUtils.networkAgentDetail.uuid)
-                    .displayIcon
+                    .abilities
+            )
+        }
+
+    @Test
+    fun `WHEN getAgentByUuidFromNetwork THEN networkAgentDetail role mapped to domainModel`() =
+        runTest {
+            Assert.assertEquals(
+                TestUtils.netWorkAgentDetailWithStatus.agent.toDomainModel().role,
+                agentsRepository
+                    .getAgentByUuidFromNetwork(TestUtils.networkAgentDetail.uuid)
+                    .role
             )
         }
 
@@ -101,8 +112,8 @@ class AgentsRepositoryImplTest {
         }
 
     @Test
-    fun `WHEN getAgentByUuidFromNetwork THEN networkAgentDetail description mapped to domainModel`()
-        = runTest {
+    fun `WHEN getAgentByUuidFromNetwork THEN networkAgentDetail description mapped to domainModel`() =
+        runTest {
             Assert.assertEquals(
                 TestUtils.netWorkAgentDetailWithStatus.agent.toDomainModel().description,
                 agentsRepository

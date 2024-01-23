@@ -13,7 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import coil.compose.AsyncImage
 import com.example.valorantandroid.R
-import com.example.valorantandroid.agent.domain.model.AgentDomainModel
+import com.example.valorantandroid.agent.domain.model.AgentDetailDomainModel
 import com.example.valorantandroid.agent.ui.viewmodel.AgentDetailsUiState
 
 @Composable
@@ -41,7 +41,7 @@ fun AgentDetailsScreen(
 
 @Composable
 fun AgentDetails(
-    agent: AgentDomainModel,
+    agent: AgentDetailDomainModel,
     modifier: Modifier = Modifier
 ) {
     Column(
