@@ -20,7 +20,7 @@ class FakeAgentsRepository : AgentsRepository {
      * FakeAgentsRepository exclusive API for handling the creation of fake api errors
      */
     fun setIsApiErrorTrue() {
-        this.isApiError = true
+        isApiError = true
     }
 
     override suspend fun getAgentsFromNetwork(): List<AgentDomainModel> = if (!isApiError) {
