@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -32,8 +33,7 @@ fun AgentsScreen(
     when (agentsUiState) {
         is AgentUiState.Error -> Text(
             text = agentsUiState.message,
-            modifier
-                .fillMaxSize()
+            modifier.fillMaxSize()
         )
 
         is AgentUiState.Loading -> CircularProgressIndicator(
@@ -46,8 +46,7 @@ fun AgentsScreen(
             Agents(
                 agents = agentsUiState.agents,
                 onAgentClicked = onAgentClicked,
-                modifier = modifier
-                    .fillMaxSize()
+                modifier = modifier.fillMaxSize()
             )
         }
     }
@@ -63,38 +62,33 @@ fun Agents(
         columns = GridCells.Fixed(count = 2),
         modifier = modifier
     ) {
-        items(agents) {
-            AgentItem(
-                agent = it,
-                modifier = Modifier
-                    .clickable { onAgentClicked(it.uuid, it.name) }
-            )
-        }
+        items(agents) { AgentItem(agent = it, onAgentClicked) }
     }
 }
 
 @Composable
 fun AgentItem(
     agent: AgentDomainModel,
+    onAgentClicked: (uuid: String, name: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
+            .wrapContentHeight()
             .padding(5.dp)
+            .clickable { onAgentClicked(agent.uuid, agent.name) }
     ) {
         AsyncImage(
             model = agent.displayIcon,
             contentDescription = agent.name + "portrait",
             placeholder = painterResource(id = R.drawable.baseline_image_24),
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         Text(
             text = agent.name,
             textAlign = TextAlign.Center,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }
 }

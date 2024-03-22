@@ -1,19 +1,23 @@
 package com.example.valorantandroid.agent.ui.screen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
-import coil.compose.AsyncImage
-import com.example.valorantandroid.R
+import androidx.compose.ui.unit.dp
 import com.example.valorantandroid.agent.domain.model.AgentDetailDomainModel
+import com.example.valorantandroid.agent.ui.composable.AgentAbility
+import com.example.valorantandroid.agent.ui.composable.AgentProfile
+import com.example.valorantandroid.agent.ui.composable.AgentRole
 import com.example.valorantandroid.agent.ui.viewmodel.AgentDetailsUiState
 
 @Composable
@@ -26,11 +30,13 @@ fun AgentDetailsScreen(
             agent = agentDetailsUiState.agent,
             modifier = modifier
         )
+
         is AgentDetailsUiState.Loading -> CircularProgressIndicator(
             modifier = modifier
                 .fillMaxSize()
                 .wrapContentSize(align = Alignment.Center)
         )
+
         is AgentDetailsUiState.Error -> Text(
             text = "Error",
             modifier = modifier
@@ -46,20 +52,23 @@ fun AgentDetails(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp, vertical = 16.dp)
+            .verticalScroll(rememberScrollState())
     ) {
-        Text(
-            text = agent.name,
-        )
-        AsyncImage(
-            model = agent.fullPortrait,
-            placeholder = painterResource(id = R.drawable.baseline_image_24),
-            contentDescription = agent.name + "portrait"
-        )
-        Text(
-            text = agent.description,
-            textAlign = TextAlign.Center
-        )
+        AgentRole(agent = agent)
+        Spacer(modifier = Modifier.padding(vertical = 5.dp))
+        AgentProfile(agent = agent)
+        Spacer(modifier = Modifier.padding(vertical = 5.dp))
+        Card {
+            agent.abilities.forEach {
+                AgentAbility(
+                    abilityName = it.displayName,
+                    abilityDescription = it.description
+                )
+                Spacer(modifier = Modifier.padding(vertical = 5.dp))
+            }
+        }
     }
 }

@@ -23,6 +23,7 @@ import com.example.valorantandroid.agent.ui.screen.AgentDetailsScreen
 import com.example.valorantandroid.agent.ui.screen.AgentsScreen
 import com.example.valorantandroid.agent.ui.viewmodel.AgentDetailsViewModel
 import com.example.valorantandroid.agent.ui.viewmodel.AgentsViewModel
+import com.example.valorantandroid.core.ui.composable.ValorantTopAppBar
 import com.example.valorantandroid.core.utils.constants.Constants
 
 private enum class NavDestinations(
@@ -35,8 +36,8 @@ private enum class NavDestinations(
 
 @Composable
 fun ValorantApp(
-    navController: NavHostController = rememberNavController(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
 ) {
     Scaffold(
         topBar = {
@@ -72,7 +73,13 @@ fun NavGraphBuilder.agentsNavGraph(navController: NavController) {
             AgentsScreen(
                 agentsUiState = agentsUiState,
                 onAgentClicked = { uuid, name ->
-                    navController.navigate("agentList/$uuid/$name")
+                    if (name == "KAY/O") {
+                        navController.navigate(
+                            route = "agentList/$uuid/${name.replace(oldValue = "/", newValue = "")}"
+                        )
+                    } else {
+                        navController.navigate(route = "agentList/$uuid/$name")
+                    }
                 }
             )
         }
@@ -100,7 +107,11 @@ private fun getTopBarTitle(navBackStackEntry: State<NavBackStackEntry?>): String
         NavDestinations.AGENTS_LIST.screenTitle
 
     NavDestinations.AGENT_DETAILS.destinationName ->
-        navBackStackEntry.value?.arguments?.getString("agentName").orEmpty()
+        if (navBackStackEntry.value?.arguments?.getString("agentName") == "KAYO") {
+            "KAY/O"
+        } else {
+            navBackStackEntry.value?.arguments?.getString("agentName").orEmpty()
+        }
 
     else ->
         "Destination name not handled!"
