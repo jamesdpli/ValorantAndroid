@@ -17,9 +17,7 @@ fun ValorantTopAppBar(
     navigateUp: () -> Unit
 ) {
     TopAppBar(
-        title = {
-            Text(text = appBarTitle)
-        },
+        title = { Text(text = appBarTitle) },
         navigationIcon = {
             if (canNavigateUp) {
                 IconButton(onClick = { navigateUp() }) {
