@@ -25,18 +25,10 @@ fun AgentDetails(
             .padding(horizontal = 16.dp, vertical = 16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        AgentRole(agent = agent)
-        Spacer(modifier = Modifier.padding(vertical = 5.dp))
         AgentProfile(agent = agent)
-        Spacer(modifier = Modifier.padding(vertical = 5.dp))
-        Card {
-            agent.abilities.forEach {
-                AgentAbility(
-                    abilityName = it.displayName,
-                    abilityDescription = it.description
-                )
-                Spacer(modifier = Modifier.padding(vertical = 5.dp))
-            }
+        agent.abilities.forEach {
+            Spacer(modifier = Modifier.padding(vertical = 5.dp))
+            AgentAbility(abilityName = it.displayName, abilityDescription = it.description)
         }
     }
 }

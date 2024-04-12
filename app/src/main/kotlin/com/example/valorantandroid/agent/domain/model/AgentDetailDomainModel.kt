@@ -7,7 +7,6 @@ data class AgentDetailDomainModel(
     val uuid: String,
     val name: String,
     val description: String,
-    val role: Role,
     val abilities: List<Ability>,
     val fullPortrait: String?
 )

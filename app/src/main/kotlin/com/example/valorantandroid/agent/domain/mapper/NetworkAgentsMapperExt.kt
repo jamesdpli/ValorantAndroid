@@ -18,6 +18,5 @@ fun AgentDetailsNetworkModel.Agent.toDomainModel(): AgentDetailDomainModel = Age
     name = this.displayName,
     description = this.description,
     abilities = this.abilities,
-    role = this.role,
     fullPortrait = this.fullPortrait
 )
