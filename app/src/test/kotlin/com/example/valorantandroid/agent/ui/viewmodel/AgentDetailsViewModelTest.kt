@@ -21,7 +21,7 @@ class AgentDetailsViewModelTest {
     val mainDispatcherRule = MainDispatcherRule()
 
     private val savedStateHandle = SavedStateHandle(
-        mapOf(Constants.AGENT_UUID to TestUtils.fakeDomainAgentOne.uuid)
+        mapOf(Constants.NavigationArguments.AGENT_UUID to TestUtils.fakeDomainAgentOne.uuid)
     )
     private val fakeAgentsRepository = FakeAgentsRepository()
 

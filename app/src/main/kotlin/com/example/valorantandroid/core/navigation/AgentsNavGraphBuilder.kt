@@ -41,7 +41,7 @@ fun NavGraphBuilder.agentsNavGraph(navController: NavController) {
         composable(
             route = "agentList/{agentUuid}/{agentName}",
             arguments = listOf(
-                navArgument(Constants.AGENT_UUID) { type = NavType.StringType },
+                navArgument(Constants.NavigationArguments.AGENT_UUID) { type = NavType.StringType },
                 navArgument("agentName") { type = NavType.StringType },
             )
         ) {
