@@ -3,13 +3,15 @@ package com.example.valorantandroid.core.ui.composable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.valorantandroid.core.navigation.NavDestinations
 import com.example.valorantandroid.core.navigation.agentsNavGraph
-import com.example.valorantandroid.core.utils.helpers.HelperFunctions
 
 @Composable
 fun ValorantApp(
@@ -19,9 +21,7 @@ fun ValorantApp(
     Scaffold(
         topBar = {
             ValorantTopAppBar(
-                appBarTitle = HelperFunctions.getTopBarTitle(
-                    navController.currentBackStackEntryAsState()
-                ),
+                appBarTitle = getTopBarTitle(navController.currentBackStackEntryAsState()),
                 canNavigateUp = navController.previousBackStackEntry != null,
                 navigateUp = { navController.navigateUp() }
             )
@@ -36,4 +36,21 @@ fun ValorantApp(
             agentsNavGraph(navController = navController)
         }
     }
+}
+
+private fun getTopBarTitle(navBackStackEntry: State<NavBackStackEntry?>): String = when (
+    navBackStackEntry.value?.destination?.route
+) {
+    NavDestinations.AGENTS_LIST.destinationName ->
+        NavDestinations.AGENTS_LIST.screenTitle
+
+    NavDestinations.AGENT_DETAILS.destinationName ->
+        if (navBackStackEntry.value?.arguments?.getString("agentName") == "KAYO") {
+            "KAY/O"
+        } else {
+            navBackStackEntry.value?.arguments?.getString("agentName").orEmpty()
+        }
+
+    else ->
+        "Destination name not handled!"
 }
