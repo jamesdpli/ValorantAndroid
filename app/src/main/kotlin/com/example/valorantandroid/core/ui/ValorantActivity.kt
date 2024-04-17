@@ -42,6 +42,7 @@ class ValorantActivity : ComponentActivity() {
             } else {
                 navBackStackEntry.value?.arguments?.getString("agentName").orEmpty()
             }
+
         else ->
             "Destination name not handled!"
     }
