@@ -36,13 +36,6 @@ object TestUtils {
     const val NETWORK_AGENT_DISPLAY_NAME = "Flyguy"
     const val NETWORK_AGENT_UUID = "fly-guy-uuid"
 
-    val NETWORK_AGENT_ROLE = AgentDetailsNetworkModel.Agent.Role(
-        assetPath = PLACE_HOLDER_STRING,
-        description = PLACE_HOLDER_STRING,
-        displayIcon = PLACE_HOLDER_STRING,
-        displayName = PLACE_HOLDER_STRING,
-        uuid = PLACE_HOLDER_STRING
-    )
     val NETWORK_AGENT_ABILITY = AgentDetailsNetworkModel.Agent.Ability(
         description = PLACE_HOLDER_STRING,
         displayIcon = PLACE_HOLDER_STRING,

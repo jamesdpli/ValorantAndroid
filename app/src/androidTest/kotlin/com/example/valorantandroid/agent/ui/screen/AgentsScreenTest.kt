@@ -1,4 +1,4 @@
-package com.example.valorantandroid
+package com.example.valorantandroid.agent.ui.screen
 
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
@@ -6,7 +6,6 @@ import androidx.compose.runtime.CompositionContext
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import com.example.valorantandroid.agent.domain.model.AgentDomainModel
-import com.example.valorantandroid.agent.ui.screen.AgentsScreen
 import com.example.valorantandroid.agent.ui.viewmodel.AgentUiState
 import com.example.valorantandroid.core.ui.ValorantActivity
 import com.example.valorantandroid.core.ui.theme.ValorantAndroidTheme
