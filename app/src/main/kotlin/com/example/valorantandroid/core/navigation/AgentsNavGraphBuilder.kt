@@ -19,9 +19,7 @@ fun NavGraphBuilder.agentsNavGraph(navController: NavController): Unit = navigat
     route = "agents",
     startDestination = "agentList",
 ) {
-    composable(
-        route = "agentList"
-    ) {
+    composable(route = "agentList") {
         val viewModel = hiltViewModel<AgentsViewModel>()
         val agentsUiState by viewModel.agentsScreenUiState.collectAsState()
         AgentsScreen(
@@ -46,8 +44,6 @@ fun NavGraphBuilder.agentsNavGraph(navController: NavController): Unit = navigat
     ) {
         val viewModel = hiltViewModel<AgentDetailsViewModel>()
         val agentDetailsUiState by viewModel.agentDetailsUiState.collectAsState()
-        AgentDetailsScreen(
-            agentDetailsUiState = agentDetailsUiState
-        )
+        AgentDetailsScreen(agentDetailsUiState = agentDetailsUiState)
     }
 }
