@@ -27,3 +27,4 @@ Important Pull Requests
 | https://github.com/jamesdpli/ValorantAndroid/pull/22 | AgentsViewModelTest | Make AgentsViewModel have 100% unit test coverage |
 | https://github.com/jamesdpli/ValorantAndroid/pull/23 | TestMapperAndDetailViewModel | Add tests for mapper and AgentsDetailViewModel  |
 | https://github.com/jamesdpli/ValorantAndroid/pull/24 | CoverRepositoryInTest | Add tests for AgentsRepositoryImpl  |
+| https://github.com/jamesdpli/ValorantAndroid/pull/25 | AddUiTests | Add Ui tests for the `AgentsScreen` |
