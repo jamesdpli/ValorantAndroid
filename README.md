@@ -2,6 +2,9 @@
 ## Showcase
 | Loading | Agents List | Agent Details |
 | --- | --- | --- | 
+|![loading_valorant_android](https://github.com/jamesdpli/ValorantAndroid/assets/96268466/e448ce45-0d6d-4e7e-acd4-e3182a796eeb)| ![scrolling_valorant_android](https://github.com/jamesdpli/ValorantAndroid/assets/96268466/32e84dd8-2f19-403b-b0b1-70ef4384b469)| ![details_valorant](https://github.com/jamesdpli/ValorantAndroid/assets/96268466/4b810f2a-345e-4fa7-b10c-eff7843c5177)|
+
+
 
 ## Important Pull Requests
 |Pull Request| Branch Name | Short Description |
