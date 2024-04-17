@@ -22,7 +22,6 @@ class NetworkAgentsMapperExtTest {
         uuid = TestUtils.NETWORK_AGENT_UUID,
         name = TestUtils.NETWORK_AGENT_DISPLAY_NAME,
         description = TestUtils.NETWORK_AGENT_DESCRIPTION,
-        role = TestUtils.NETWORK_AGENT_ROLE,
         abilities = listOf(TestUtils.NETWORK_AGENT_ABILITY),
         fullPortrait = TestUtils.NETWORK_AGENT_FULL_PORTRAIT
     )
@@ -133,17 +132,6 @@ class NetworkAgentsMapperExtTest {
                 .networkAgentDetail
                 .toDomainModel()
                 .abilities
-        )
-    }
-
-    @Test
-    fun `WHEN toDomainModel on AgentDetailsNetworkModel THEN expect role to be mapped`() {
-        assertEquals(
-            mappedAgentDetail.role,
-            TestUtils
-                .networkAgentDetail
-                .toDomainModel()
-                .role
         )
     }
 

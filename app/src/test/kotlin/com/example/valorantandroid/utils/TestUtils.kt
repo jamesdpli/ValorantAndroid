@@ -35,6 +35,7 @@ object TestUtils {
     const val NETWORK_AGENT_FULL_PORTRAIT = "full flying agent portrait"
     const val NETWORK_AGENT_DISPLAY_NAME = "Flyguy"
     const val NETWORK_AGENT_UUID = "fly-guy-uuid"
+
     val NETWORK_AGENT_ROLE = AgentDetailsNetworkModel.Agent.Role(
         assetPath = PLACE_HOLDER_STRING,
         description = PLACE_HOLDER_STRING,
@@ -78,7 +79,6 @@ object TestUtils {
         name = AGENT_ONE_NAME,
         description = AGENT_ONE_DESCRIPTION,
         abilities = listOf(NETWORK_AGENT_ABILITY),
-        role = NETWORK_AGENT_ROLE,
         fullPortrait = AGENT_ONE_FULL_PORTRAIT
     )
 

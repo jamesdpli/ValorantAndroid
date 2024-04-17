@@ -26,7 +26,7 @@ class AgentDetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val uuidNavArg: String = checkNotNull(
-        savedStateHandle[Constants.AGENT_UUID]
+        savedStateHandle[Constants.NavigationArguments.AGENT_UUID]
     )
 
     private var _agentDetailsUiState =

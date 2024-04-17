@@ -90,17 +90,6 @@ class AgentsRepositoryImplTest {
         }
 
     @Test
-    fun `WHEN getAgentByUuidFromNetwork THEN networkAgentDetail role mapped to domainModel`() =
-        runTest {
-            Assert.assertEquals(
-                TestUtils.netWorkAgentDetailWithStatus.agent.toDomainModel().role,
-                agentsRepository
-                    .getAgentByUuidFromNetwork(TestUtils.networkAgentDetail.uuid)
-                    .role
-            )
-        }
-
-    @Test
     fun `WHEN getAgentByUuidFromNetwork THEN networkAgentDetail fullPortrait mapped to domainModel`() =
         runTest {
             Assert.assertEquals(
