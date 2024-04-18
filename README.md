@@ -34,3 +34,9 @@
 | https://github.com/jamesdpli/ValorantAndroid/pull/23 | TestMapperAndDetailViewModel | Add tests for mapper and AgentsDetailViewModel  |
 | https://github.com/jamesdpli/ValorantAndroid/pull/24 | CoverRepositoryInTest | Add tests for AgentsRepositoryImpl  |
 | https://github.com/jamesdpli/ValorantAndroid/pull/25 | AddUiTests | Add Ui tests for the `AgentsScreen` |
+
+## **Credits**
+
+| Credits | Description                                                                                                                                                                                                 | Link To Docs                   |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
+| Valorant-API   | An extensive API containing data of most in-game items, assets and more! | https://dash.valorant-api.com/ | 
