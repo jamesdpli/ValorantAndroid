@@ -41,7 +41,7 @@ class AgentDetailsViewModelTest {
 
         assertEquals(
             AgentDetailsUiState.Loading,
-            values.last()
+            values.first()
         )
     }
 
