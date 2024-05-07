@@ -2,19 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AgentsDetailsScreenTest">
-        <State />
-      </entry>
-      <entry key="AgentsScreenTest">
-        <State />
-      </entry>
-      <entry key="Tests in 'com.example.valorantandroid.agent.ui.screen'">
-        <State />
-      </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="given_agentDetailsUiState_is_error_then_expect_an_error_screen_to_be_displayed()">
         <State />
       </entry>
     </value>
