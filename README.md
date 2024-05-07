@@ -39,3 +39,4 @@
 | Credits | Description                                                                                                                                                                                                 | Link To Docs                   |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
 | Valorant-API   | An extensive API containing data of most in-game items, assets and more! | https://dash.valorant-api.com/ | 
+| android-emulator-runner | A GitHub Action for installing, configuring and running hardware-accelerated Android Emulators on Linux and macOS virtual machines.|https://github.com/ReactiveCircus/android-emulator-runner |
