@@ -32,6 +32,7 @@
 | https://github.com/jamesdpli/ValorantAndroid/pull/23 | TestMapperAndDetailViewModel | Add tests for mapper and AgentsDetailViewModel  |
 | https://github.com/jamesdpli/ValorantAndroid/pull/24 | CoverRepositoryInTest | Add tests for AgentsRepositoryImpl  |
 | https://github.com/jamesdpli/ValorantAndroid/pull/25 | AddUiTests | Add Ui tests for the `AgentsScreen` |
+| https://github.com/jamesdpli/ValorantAndroid/pull/26 | AddGithubActions | Add Github actions that check run all ui and unit tests |
 
 ## **Credits**
 
