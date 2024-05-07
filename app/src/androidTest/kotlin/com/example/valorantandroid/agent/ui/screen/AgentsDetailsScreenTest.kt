@@ -61,7 +61,7 @@ class AgentsDetailsScreenTest {
         with(composeTestRule) {
             onNodeWithTag(Constants.TestTags.AGENTS_DETAILS_LOADING_SCREEN).assertDoesNotExist()
             onNodeWithTag(Constants.TestTags.AGENT_DETAILS_SUCCESS_SCREEN).assertExists()
-            onNodeWithTag(Constants.TestTags.AGENT_DETAILS_ERROR_SCREEN).assertDoesNotExist()
+            onNodeWithTag(Constants.TestTags.AGENT_DETAILS_ERROR_SCREEN).assertExists()
         }
     }
 
