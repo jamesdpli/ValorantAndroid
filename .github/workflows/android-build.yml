@@ -49,7 +49,8 @@ jobs:
         run: ./gradlew :app:koverHtmlReportDebug
 
       - name: Upload coverage to Codecov
-        run: |
-          curl -Os https://uploader.codecov.io/latest/macos/codecov
-          chmod +x codecov
-          ./codecov
+        uses: codecov/codecov-action@v4
+        with:
+          verbose: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
