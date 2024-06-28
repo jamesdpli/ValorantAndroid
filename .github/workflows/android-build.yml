@@ -49,7 +49,9 @@ jobs:
         run: ./gradlew :app:koverHtmlReportDebug
 
       - name: Upload coverage reports to Codecov
-        run:
+        run: |
+        # Replace `linux` below with the appropriate OS
+        # Options are `alpine`, `linux`, `macos`, `windows`
           curl -Os https://cli.codecov.io/latest/linux/codecov
-          sudo chmod +x codecov
-          ./codecov --verbose upload-process --fail-on-error -t ${{ secrets.CODECOV_TOKEN }} -n 'service'-${{ github.run_id }} -F service -f index.xml
+          chmod +x codecov
+          ./codecov --verbose upload-process --fail-on-error -t ${{ secrets.CODECOV_TOKEN }} -n 'service'-${{ github.run_id }} -F service -f index.html
