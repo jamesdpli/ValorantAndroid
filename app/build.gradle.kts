@@ -3,6 +3,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlinx.kover") version "0.8.2"
 }
 
 android {
@@ -100,4 +101,32 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                packages(
+                    "hilt_aggregated_deps",
+                    "dagger.hilt.internal.aggregatedroot.codegen",
+                    "com.example.valorantandroid.core.ui.theme",
+                    "com.example.valorantandroid.core.navigation",
+                    "com.example.valorantandroid.core.utils.constants",
+                    "*composable*",
+                    "*screen*"
+                )
+                classes(
+                    "com.example.valorantandroid.core.ui.*Activity*",
+                    "com.example.valorantandroid.core.ui.*Application*",
+                    "com.example.valorantandroid.agent.ui.viewmodel.*Factory*"
+                )
+                annotatedBy(
+                    "*Composable*",
+                    "*Module*",
+                    "*Generated*"
+                )
+            }
+        }
+    }
 }
