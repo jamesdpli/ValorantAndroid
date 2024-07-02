@@ -35,6 +35,7 @@
 | https://github.com/jamesdpli/ValorantAndroid/pull/24 | CoverRepositoryInTest | Add tests for AgentsRepositoryImpl  |
 | https://github.com/jamesdpli/ValorantAndroid/pull/25 | AddUiTests | Add Ui tests for the `AgentsScreen` |
 | https://github.com/jamesdpli/ValorantAndroid/pull/26 | AddGithubActions | Add Github actions that check run all ui and unit tests |
+| https://github.com/jamesdpli/ValorantAndroid/pull/27 | TestCodeCov | Add Kover and use GitHub actions to send the test report to codecov, commit https://github.com/jamesdpli/ValorantAndroid/commit/e7780481d550699c17e8b7a1301a560954b1cd7d fixes an issue with codecov not populating |
 
 ## Coverage charts (provided by codecov)
 
