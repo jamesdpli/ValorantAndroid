@@ -13,6 +13,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
+import java.lang.IllegalStateException
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class AgentDetailsViewModelTest {
@@ -73,5 +74,19 @@ class AgentDetailsViewModelTest {
                 AgentDetailsUiState.Error(message = FakeAgentsRepository.EXCEPTION),
                 values.last()
             )
+        }
+
+    @Test(expected = IllegalStateException::class)
+    fun `GIVEN savedStateHandles is null WHEN init view model THEN expect IllegalStateException`() =
+        runTest {
+            val fakeSavedStateHandle = SavedStateHandle(
+                initialState = mapOf(Constants.NavigationArguments.AGENT_UUID to null)
+            )
+            val fakeViewModel = AgentDetailsViewModel(fakeSavedStateHandle, fakeAgentsRepository)
+
+            val values = mutableListOf<AgentDetailsUiState>()
+            backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
+                fakeViewModel.agentDetailsUiState.toList(values)
+            }
         }
 }
