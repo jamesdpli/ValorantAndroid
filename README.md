@@ -1,4 +1,6 @@
 # ValorantAndroid
+[![codecov](https://codecov.io/github/jamesdpli/ValorantAndroid/branch/main/graph/badge.svg?token=UNDOLLXR0Z)](https://codecov.io/github/jamesdpli/ValorantAndroid)
+
 ## Showcase
 | Loading | Agents List | Agent Details |
 | --- | --- | --- | 
