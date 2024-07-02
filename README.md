@@ -36,6 +36,12 @@
 | https://github.com/jamesdpli/ValorantAndroid/pull/25 | AddUiTests | Add Ui tests for the `AgentsScreen` |
 | https://github.com/jamesdpli/ValorantAndroid/pull/26 | AddGithubActions | Add Github actions that check run all ui and unit tests |
 
+## Coverage charts (provided by codecov)
+
+| Sun burst | Grid | Icicle |
+| --- | --- | --- |
+| <img src="https://codecov.io/github/jamesdpli/ValorantAndroid/graphs/sunburst.svg?token=UNDOLLXR0Z" /> | <img src ="https://codecov.io/github/jamesdpli/ValorantAndroid/graphs/tree.svg?token=UNDOLLXR0Z" /> | <img src="https://codecov.io/github/jamesdpli/ValorantAndroid/graphs/icicle.svg?token=UNDOLLXR0Z" /> |
+
 ## **Credits**
 
 | Credits | Description                                                                                                                                                                                                 | Link To Docs                   |
